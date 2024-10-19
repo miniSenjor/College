@@ -1,0 +1,788 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище timeTableModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="id_group" />
+          </Key>
+          <Property Name="id_group" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="kyrs" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lesson">
+          <Key>
+            <PropertyRef Name="id_lesson" />
+          </Key>
+          <Property Name="id_lesson" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="number" Type="int" Nullable="false" />
+          <Property Name="even" Type="int" Nullable="false" />
+          <Property Name="id_cabinet" Type="int" Nullable="false" />
+          <Property Name="id_teacher" Type="int" Nullable="false" />
+          <Property Name="id_group" Type="int" Nullable="false" />
+          <Property Name="id_subject" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Replacement">
+          <Key>
+            <PropertyRef Name="id_replacement" />
+          </Key>
+          <Property Name="id_replacement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="id_lesson" Type="int" Nullable="false" />
+          <Property Name="id_teacher" Type="int" Nullable="false" />
+          <Property Name="id_subject" Type="int" Nullable="false" />
+          <Property Name="id_group" Type="int" Nullable="false" />
+          <Property Name="id_cabinet" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="id_subject" />
+          </Key>
+          <Property Name="id_subject" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="time" Type="int" Nullable="false" />
+          <Property Name="id_group" Type="int" Nullable="false" />
+          <Property Name="id_teacher" Type="int" Nullable="false" />
+          <Property Name="id_subject_name" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubjectName">
+          <Key>
+            <PropertyRef Name="id_subject_name" />
+          </Key>
+          <Property Name="id_subject_name" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="id_teacher" />
+          </Key>
+          <Property Name="id_teacher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_role" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сabinet">
+          <Key>
+            <PropertyRef Name="id_cabinet" />
+          </Key>
+          <Property Name="id_cabinet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="number" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Lesson_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id_subject" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="id_subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="id_teacher" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Сabinet">
+          <End Role="Сabinet" Type="Self.Сabinet" Multiplicity="1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сabinet">
+              <PropertyRef Name="id_cabinet" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="id_cabinet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replacement_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Replacement" Type="Self.Replacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="Replacement">
+              <PropertyRef Name="id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replacement_Lesson">
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="1" />
+          <End Role="Replacement" Type="Self.Replacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lesson">
+              <PropertyRef Name="id_lesson" />
+            </Principal>
+            <Dependent Role="Replacement">
+              <PropertyRef Name="id_lesson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replacement_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Replacement" Type="Self.Replacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id_subject" />
+            </Principal>
+            <Dependent Role="Replacement">
+              <PropertyRef Name="id_subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replacement_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Replacement" Type="Self.Replacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="id_teacher" />
+            </Principal>
+            <Dependent Role="Replacement">
+              <PropertyRef Name="id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replacement_Сabinet">
+          <End Role="Сabinet" Type="Self.Сabinet" Multiplicity="1" />
+          <End Role="Replacement" Type="Self.Replacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сabinet">
+              <PropertyRef Name="id_cabinet" />
+            </Principal>
+            <Dependent Role="Replacement">
+              <PropertyRef Name="id_cabinet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_SubjectName">
+          <End Role="SubjectName" Type="Self.SubjectName" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectName">
+              <PropertyRef Name="id_subject_name" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="id_subject_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="id_teacher" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище timeTableModelContainer">
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lesson" EntityType="Self.Lesson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Replacement" EntityType="Self.Replacement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectName" EntityType="Self.SubjectName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сabinet" EntityType="Self.Сabinet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Lesson_Group" Association="Self.FK_Lesson_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Subject" Association="Self.FK_Lesson_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Teacher" Association="Self.FK_Lesson_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Сabinet" Association="Self.FK_Lesson_Сabinet">
+            <End Role="Сabinet" EntitySet="Сabinet" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replacement_Group" Association="Self.FK_Replacement_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Replacement" EntitySet="Replacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replacement_Lesson" Association="Self.FK_Replacement_Lesson">
+            <End Role="Lesson" EntitySet="Lesson" />
+            <End Role="Replacement" EntitySet="Replacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replacement_Subject" Association="Self.FK_Replacement_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Replacement" EntitySet="Replacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replacement_Teacher" Association="Self.FK_Replacement_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Replacement" EntitySet="Replacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replacement_Сabinet" Association="Self.FK_Replacement_Сabinet">
+            <End Role="Сabinet" EntitySet="Сabinet" />
+            <End Role="Replacement" EntitySet="Replacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_Group" Association="Self.FK_Subject_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_SubjectName" Association="Self.FK_Subject_SubjectName">
+            <End Role="SubjectName" EntitySet="SubjectName" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_Teacher" Association="Self.FK_Subject_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="timeTableModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="id_group" />
+          </Key>
+          <Property Name="id_group" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kyrs" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Lesson" Relationship="Self.FK_Lesson_Group" FromRole="Group" ToRole="Lesson" />
+          <NavigationProperty Name="Replacement" Relationship="Self.FK_Replacement_Group" FromRole="Group" ToRole="Replacement" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Subject_Group" FromRole="Group" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Lesson">
+          <Key>
+            <PropertyRef Name="id_lesson" />
+          </Key>
+          <Property Name="id_lesson" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="day" Type="Int32" Nullable="false" />
+          <Property Name="number" Type="Int32" Nullable="false" />
+          <Property Name="even" Type="Int32" Nullable="false" />
+          <Property Name="id_cabinet" Type="Int32" Nullable="false" />
+          <Property Name="id_teacher" Type="Int32" Nullable="false" />
+          <Property Name="id_group" Type="Int32" Nullable="false" />
+          <Property Name="id_subject" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Lesson_Group" FromRole="Lesson" ToRole="Group" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Lesson_Subject" FromRole="Lesson" ToRole="Subject" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Lesson_Teacher" FromRole="Lesson" ToRole="Teacher" />
+          <NavigationProperty Name="Сabinet" Relationship="Self.FK_Lesson_Сabinet" FromRole="Lesson" ToRole="Сabinet" />
+          <NavigationProperty Name="Replacement" Relationship="Self.FK_Replacement_Lesson" FromRole="Lesson" ToRole="Replacement" />
+        </EntityType>
+        <EntityType Name="Replacement">
+          <Key>
+            <PropertyRef Name="id_replacement" />
+          </Key>
+          <Property Name="id_replacement" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_lesson" Type="Int32" Nullable="false" />
+          <Property Name="id_teacher" Type="Int32" Nullable="false" />
+          <Property Name="id_subject" Type="Int32" Nullable="false" />
+          <Property Name="id_group" Type="Int32" Nullable="false" />
+          <Property Name="id_cabinet" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Replacement_Group" FromRole="Replacement" ToRole="Group" />
+          <NavigationProperty Name="Lesson" Relationship="Self.FK_Replacement_Lesson" FromRole="Replacement" ToRole="Lesson" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Replacement_Subject" FromRole="Replacement" ToRole="Subject" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Replacement_Teacher" FromRole="Replacement" ToRole="Teacher" />
+          <NavigationProperty Name="Сabinet" Relationship="Self.FK_Replacement_Сabinet" FromRole="Replacement" ToRole="Сabinet" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="id_subject" />
+          </Key>
+          <Property Name="id_subject" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="time" Type="Int32" Nullable="false" />
+          <Property Name="id_group" Type="Int32" Nullable="false" />
+          <Property Name="id_teacher" Type="Int32" Nullable="false" />
+          <Property Name="id_subject_name" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_Subject_Group" FromRole="Subject" ToRole="Group" />
+          <NavigationProperty Name="Lesson" Relationship="Self.FK_Lesson_Subject" FromRole="Subject" ToRole="Lesson" />
+          <NavigationProperty Name="Replacement" Relationship="Self.FK_Replacement_Subject" FromRole="Subject" ToRole="Replacement" />
+          <NavigationProperty Name="SubjectName" Relationship="Self.FK_Subject_SubjectName" FromRole="Subject" ToRole="SubjectName" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_Subject_Teacher" FromRole="Subject" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="SubjectName">
+          <Key>
+            <PropertyRef Name="id_subject_name" />
+          </Key>
+          <Property Name="id_subject_name" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Subject_SubjectName" FromRole="SubjectName" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="id_teacher" />
+          </Key>
+          <Property Name="id_teacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Lesson" Relationship="Self.FK_Lesson_Teacher" FromRole="Teacher" ToRole="Lesson" />
+          <NavigationProperty Name="Replacement" Relationship="Self.FK_Replacement_Teacher" FromRole="Teacher" ToRole="Replacement" />
+          <NavigationProperty Name="Subject" Relationship="Self.FK_Subject_Teacher" FromRole="Teacher" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Сabinet">
+          <Key>
+            <PropertyRef Name="id_cabinet" />
+          </Key>
+          <Property Name="id_cabinet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="number" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Lesson" Relationship="Self.FK_Lesson_Сabinet" FromRole="Сabinet" ToRole="Lesson" />
+          <NavigationProperty Name="Replacement" Relationship="Self.FK_Replacement_Сabinet" FromRole="Сabinet" ToRole="Replacement" />
+        </EntityType>
+        <Association Name="FK_Lesson_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replacement_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Replacement" Type="Self.Replacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="Replacement">
+              <PropertyRef Name="id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="id_group" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="id_group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id_subject" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="id_subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="id_teacher" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lesson_Сabinet">
+          <End Role="Сabinet" Type="Self.Сabinet" Multiplicity="1" />
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сabinet">
+              <PropertyRef Name="id_cabinet" />
+            </Principal>
+            <Dependent Role="Lesson">
+              <PropertyRef Name="id_cabinet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replacement_Lesson">
+          <End Role="Lesson" Type="Self.Lesson" Multiplicity="1" />
+          <End Role="Replacement" Type="Self.Replacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lesson">
+              <PropertyRef Name="id_lesson" />
+            </Principal>
+            <Dependent Role="Replacement">
+              <PropertyRef Name="id_lesson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replacement_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Replacement" Type="Self.Replacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="id_subject" />
+            </Principal>
+            <Dependent Role="Replacement">
+              <PropertyRef Name="id_subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replacement_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Replacement" Type="Self.Replacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="id_teacher" />
+            </Principal>
+            <Dependent Role="Replacement">
+              <PropertyRef Name="id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Replacement_Сabinet">
+          <End Role="Сabinet" Type="Self.Сabinet" Multiplicity="1" />
+          <End Role="Replacement" Type="Self.Replacement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сabinet">
+              <PropertyRef Name="id_cabinet" />
+            </Principal>
+            <Dependent Role="Replacement">
+              <PropertyRef Name="id_cabinet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_SubjectName">
+          <End Role="SubjectName" Type="Self.SubjectName" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectName">
+              <PropertyRef Name="id_subject_name" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="id_subject_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="id_teacher" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="timeTableEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Group" EntityType="Self.Group" />
+          <EntitySet Name="Lesson" EntityType="Self.Lesson" />
+          <EntitySet Name="Replacement" EntityType="Self.Replacement" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" />
+          <EntitySet Name="SubjectName" EntityType="Self.SubjectName" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Сabinet" EntityType="Self.Сabinet" />
+          <AssociationSet Name="FK_Lesson_Group" Association="Self.FK_Lesson_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replacement_Group" Association="Self.FK_Replacement_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Replacement" EntitySet="Replacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_Group" Association="Self.FK_Subject_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Subject" Association="Self.FK_Lesson_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Teacher" Association="Self.FK_Lesson_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lesson_Сabinet" Association="Self.FK_Lesson_Сabinet">
+            <End Role="Сabinet" EntitySet="Сabinet" />
+            <End Role="Lesson" EntitySet="Lesson" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replacement_Lesson" Association="Self.FK_Replacement_Lesson">
+            <End Role="Lesson" EntitySet="Lesson" />
+            <End Role="Replacement" EntitySet="Replacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replacement_Subject" Association="Self.FK_Replacement_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="Replacement" EntitySet="Replacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replacement_Teacher" Association="Self.FK_Replacement_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Replacement" EntitySet="Replacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Replacement_Сabinet" Association="Self.FK_Replacement_Сabinet">
+            <End Role="Сabinet" EntitySet="Сabinet" />
+            <End Role="Replacement" EntitySet="Replacement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_SubjectName" Association="Self.FK_Subject_SubjectName">
+            <End Role="SubjectName" EntitySet="SubjectName" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_Teacher" Association="Self.FK_Subject_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище timeTableModelContainer" CdmEntityContainer="timeTableEntities">
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="timeTableModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="id_group" ColumnName="id_group" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="kyrs" ColumnName="kyrs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lesson">
+            <EntityTypeMapping TypeName="timeTableModel.Lesson">
+              <MappingFragment StoreEntitySet="Lesson">
+                <ScalarProperty Name="id_lesson" ColumnName="id_lesson" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="even" ColumnName="even" />
+                <ScalarProperty Name="id_cabinet" ColumnName="id_cabinet" />
+                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+                <ScalarProperty Name="id_group" ColumnName="id_group" />
+                <ScalarProperty Name="id_subject" ColumnName="id_subject" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Replacement">
+            <EntityTypeMapping TypeName="timeTableModel.Replacement">
+              <MappingFragment StoreEntitySet="Replacement">
+                <ScalarProperty Name="id_replacement" ColumnName="id_replacement" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id_lesson" ColumnName="id_lesson" />
+                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+                <ScalarProperty Name="id_subject" ColumnName="id_subject" />
+                <ScalarProperty Name="id_group" ColumnName="id_group" />
+                <ScalarProperty Name="id_cabinet" ColumnName="id_cabinet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="timeTableModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subject">
+            <EntityTypeMapping TypeName="timeTableModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="id_subject" ColumnName="id_subject" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="id_group" ColumnName="id_group" />
+                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+                <ScalarProperty Name="id_subject_name" ColumnName="id_subject_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectName">
+            <EntityTypeMapping TypeName="timeTableModel.SubjectName">
+              <MappingFragment StoreEntitySet="SubjectName">
+                <ScalarProperty Name="id_subject_name" ColumnName="id_subject_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="timeTableModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher">
+            <EntityTypeMapping TypeName="timeTableModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="timeTableModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сabinet">
+            <EntityTypeMapping TypeName="timeTableModel.Сabinet">
+              <MappingFragment StoreEntitySet="Сabinet">
+                <ScalarProperty Name="id_cabinet" ColumnName="id_cabinet" />
+                <ScalarProperty Name="number" ColumnName="number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
