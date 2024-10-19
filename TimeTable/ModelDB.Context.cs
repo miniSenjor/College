@@ -15,6 +15,15 @@ namespace TimeTable
     
     public partial class timeTableEntities : DbContext
     {
+        private static timeTableEntities _context;
+
+        public static timeTableEntities GetContext()
+        {
+            if (_context == null)
+                _context = new timeTableEntities();
+            return _context;
+        }
+
         public timeTableEntities()
             : base("name=timeTableEntities")
         {

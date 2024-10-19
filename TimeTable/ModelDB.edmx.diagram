@@ -20,7 +20,7 @@
         <AssociationConnector Association="timeTableModel.FK_Subject_Group" ManuallyRouted="false" />
         <AssociationConnector Association="timeTableModel.FK_Lesson_Subject" ManuallyRouted="false" />
         <AssociationConnector Association="timeTableModel.FK_Lesson_Teacher" ManuallyRouted="false" />
-        <AssociationConnector Association="timeTableModel.FK_Lesson_Сabinet" ManuallyRouted="false" />
+        <AssociationConnector Association="timeTableModel.FK_Lesson_Сabinet" ManuallyRouted="false" ></AssociationConnector>
         <AssociationConnector Association="timeTableModel.FK_Replacement_Lesson" ManuallyRouted="false" />
         <AssociationConnector Association="timeTableModel.FK_Replacement_Subject" ManuallyRouted="false" />
         <AssociationConnector Association="timeTableModel.FK_Replacement_Teacher" ManuallyRouted="false" />
