@@ -65,39 +65,49 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Group.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
     <Compile Include="Lesson.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
     <Compile Include="Replacement.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
     <Compile Include="Subject.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
     <Compile Include="SubjectName.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
     <Compile Include="Teacher.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>TimeTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeTable.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimeTable.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeTable.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimeTable.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeTable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimeTable.edmx</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
     <Compile Include="Сabinet.cs">
-      <DependentUpon>ModelDB.tt</DependentUpon>
+      <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -113,16 +123,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ModelDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -140,36 +140,36 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="ModelDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ModelDB.edmx.diagram">
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="TimeTable.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TimeTable.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TimeTable.edmx.diagram">
+      <DependentUpon>TimeTable.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModelDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelDB.Context.cs</LastGenOutput>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="ModelDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelDB.edmx</DependentUpon>
-      <LastGenOutput>ModelDB.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="TimeTable.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TimeTable.edmx</DependentUpon>
+      <LastGenOutput>TimeTable.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TimeTable.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TimeTable.edmx</DependentUpon>
+      <LastGenOutput>TimeTable.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

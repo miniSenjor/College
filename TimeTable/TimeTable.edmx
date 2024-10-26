@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище timeTableModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище TimeTableModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="id_group" />
@@ -251,7 +251,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище timeTableModelContainer">
+        <EntityContainer Name="Хранилище TimeTableModelContainer">
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lesson" EntityType="Self.Lesson" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Replacement" EntityType="Self.Replacement" Schema="dbo" store:Type="Tables" />
@@ -315,10 +315,11 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="timeTableModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TimeTableModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="id_group" />
@@ -591,7 +592,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="timeTableEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TimeTableEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Group" EntityType="Self.Group" />
           <EntitySet Name="Lesson" EntityType="Self.Lesson" />
           <EntitySet Name="Replacement" EntityType="Self.Replacement" />
@@ -660,9 +661,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище timeTableModelContainer" CdmEntityContainer="timeTableEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TimeTableModelContainer" CdmEntityContainer="TimeTableEntities">
           <EntitySetMapping Name="Group">
-            <EntityTypeMapping TypeName="timeTableModel.Group">
+            <EntityTypeMapping TypeName="TimeTableModel.Group">
               <MappingFragment StoreEntitySet="Group">
                 <ScalarProperty Name="id_group" ColumnName="id_group" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -671,7 +672,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Lesson">
-            <EntityTypeMapping TypeName="timeTableModel.Lesson">
+            <EntityTypeMapping TypeName="TimeTableModel.Lesson">
               <MappingFragment StoreEntitySet="Lesson">
                 <ScalarProperty Name="id_lesson" ColumnName="id_lesson" />
                 <ScalarProperty Name="day" ColumnName="day" />
@@ -685,7 +686,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Replacement">
-            <EntityTypeMapping TypeName="timeTableModel.Replacement">
+            <EntityTypeMapping TypeName="TimeTableModel.Replacement">
               <MappingFragment StoreEntitySet="Replacement">
                 <ScalarProperty Name="id_replacement" ColumnName="id_replacement" />
                 <ScalarProperty Name="date" ColumnName="date" />
@@ -698,7 +699,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="timeTableModel.Role">
+            <EntityTypeMapping TypeName="TimeTableModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="id_role" ColumnName="id_role" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -706,7 +707,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subject">
-            <EntityTypeMapping TypeName="timeTableModel.Subject">
+            <EntityTypeMapping TypeName="TimeTableModel.Subject">
               <MappingFragment StoreEntitySet="Subject">
                 <ScalarProperty Name="id_subject" ColumnName="id_subject" />
                 <ScalarProperty Name="time" ColumnName="time" />
@@ -717,7 +718,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubjectName">
-            <EntityTypeMapping TypeName="timeTableModel.SubjectName">
+            <EntityTypeMapping TypeName="TimeTableModel.SubjectName">
               <MappingFragment StoreEntitySet="SubjectName">
                 <ScalarProperty Name="id_subject_name" ColumnName="id_subject_name" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -725,7 +726,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="timeTableModel.sysdiagrams">
+            <EntityTypeMapping TypeName="TimeTableModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -736,7 +737,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Teacher">
-            <EntityTypeMapping TypeName="timeTableModel.Teacher">
+            <EntityTypeMapping TypeName="TimeTableModel.Teacher">
               <MappingFragment StoreEntitySet="Teacher">
                 <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
                 <ScalarProperty Name="FIO" ColumnName="FIO" />
@@ -744,7 +745,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="timeTableModel.User">
+            <EntityTypeMapping TypeName="TimeTableModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="id_user" ColumnName="id_user" />
                 <ScalarProperty Name="login" ColumnName="login" />
@@ -754,7 +755,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Сabinet">
-            <EntityTypeMapping TypeName="timeTableModel.Сabinet">
+            <EntityTypeMapping TypeName="TimeTableModel.Сabinet">
               <MappingFragment StoreEntitySet="Сabinet">
                 <ScalarProperty Name="id_cabinet" ColumnName="id_cabinet" />
                 <ScalarProperty Name="number" ColumnName="number" />

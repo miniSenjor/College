@@ -23,7 +23,8 @@ namespace TimeTable
         public MainWindow()
         {
             InitializeComponent();
-            dgGroups.ItemsSource = timeTableEntities.GetContext().Group.ToList();
+            //timeTableEntities.GetContext().Group.Add
+            dgGroups.ItemsSource = App.GetContext().Group.ToList();
         }
     }
 }

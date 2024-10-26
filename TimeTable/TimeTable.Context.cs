@@ -13,19 +13,10 @@ namespace TimeTable
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class timeTableEntities : DbContext
+    public partial class TimeTableEntities : DbContext
     {
-        private static timeTableEntities _context;
-
-        public static timeTableEntities GetContext()
-        {
-            if (_context == null)
-                _context = new timeTableEntities();
-            return _context;
-        }
-
-        public timeTableEntities()
-            : base("name=timeTableEntities")
+        public TimeTableEntities()
+            : base("name=TimeTableEntities")
         {
         }
     

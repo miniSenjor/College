@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="773abfd4fe1f4beb9003de7b64043f68" Name="Diagram1">
+        <EntityTypeShape EntityType="TimeTableModel.Group" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Lesson" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Replacement" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Role" Width="1.5" PointX="5.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Subject" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.SubjectName" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Teacher" Width="1.5" PointX="3.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.User" Width="1.5" PointX="8" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Сabinet" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="TimeTableModel.FK_Lesson_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_Replacement_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_Subject_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_Lesson_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_Lesson_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_Lesson_Сabinet" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_Replacement_Lesson" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_Replacement_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_Replacement_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_Replacement_Сabinet" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_Subject_SubjectName" ManuallyRouted="false" />
+        <AssociationConnector Association="TimeTableModel.FK_Subject_Teacher" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
