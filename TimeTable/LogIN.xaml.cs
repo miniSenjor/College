@@ -22,7 +22,6 @@ namespace TimeTable
         public LogIN()
         {
             InitializeComponent();
-            
         }
     }
 }
