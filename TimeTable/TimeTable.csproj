@@ -70,6 +70,9 @@
     <Compile Include="Lesson.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
+    <Compile Include="LogIN.xaml.cs">
+      <DependentUpon>LogIN.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Replacement.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
@@ -109,6 +112,10 @@
     <Compile Include="Сabinet.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
+    <Page Include="LogIN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -160,6 +167,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="logo.png" />
     <Content Include="TimeTable.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TimeTable.edmx</DependentUpon>
@@ -170,6 +178,9 @@
       <DependentUpon>TimeTable.edmx</DependentUpon>
       <LastGenOutput>TimeTable.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="img\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
