@@ -70,9 +70,9 @@
     <Compile Include="Lesson.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
-    <Compile Include="LogIN.xaml.cs">
-      <DependentUpon>LogIN.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Model\DayModel.cs" />
+    <Compile Include="Model\LessonModel.cs" />
+    <Compile Include="Model\WeekModel.cs" />
     <Compile Include="Replacement.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
@@ -109,14 +109,28 @@
     <Compile Include="User.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Navigation.cs" />
+    <Compile Include="ViewModel\RelayCommand.cs" />
+    <Compile Include="ViewModel\TimeTableViewModel.cs" />
+    <Compile Include="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimeTableView.xaml.cs">
+      <DependentUpon>TimeTableView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Сabinet.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
-    <Page Include="LogIN.xaml">
+    <Page Include="View\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -124,10 +138,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TimeTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -168,6 +190,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="img\" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="TimeTable.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TimeTable.edmx</DependentUpon>
@@ -178,9 +205,6 @@
       <DependentUpon>TimeTable.edmx</DependentUpon>
       <LastGenOutput>TimeTable.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="img\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -25,13 +25,9 @@ namespace TimeTable
         public int number { get; set; }
         public int even { get; set; }
         public int id_cabinet { get; set; }
-        public int id_teacher { get; set; }
-        public int id_group { get; set; }
         public int id_subject { get; set; }
     
-        public virtual Group Group { get; set; }
         public virtual Subject Subject { get; set; }
-        public virtual Teacher Teacher { get; set; }
         public virtual Сabinet Сabinet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Replacement> Replacement { get; set; }

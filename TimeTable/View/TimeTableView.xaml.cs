@@ -12,19 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeTable.ViewModel;
 
-namespace TimeTable
+namespace TimeTable.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для TimeTableView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TimeTableView : Page
     {
-        public MainWindow()
+        public TimeTableView()
         {
             InitializeComponent();
-            //timeTableEntities.GetContext().Group.Add
-            dgGroups.ItemsSource = App.GetContext().Group.ToList();
+            DataContext = new TimeTableViewModel();
         }
     }
 }

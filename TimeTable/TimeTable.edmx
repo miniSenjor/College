@@ -22,8 +22,6 @@
           <Property Name="number" Type="int" Nullable="false" />
           <Property Name="even" Type="int" Nullable="false" />
           <Property Name="id_cabinet" Type="int" Nullable="false" />
-          <Property Name="id_teacher" Type="int" Nullable="false" />
-          <Property Name="id_group" Type="int" Nullable="false" />
           <Property Name="id_subject" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Replacement">
@@ -60,7 +58,7 @@
             <PropertyRef Name="id_subject_name" />
           </Key>
           <Property Name="id_subject_name" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -95,18 +93,6 @@
           <Property Name="id_cabinet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="number" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Lesson_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="1" />
-          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="id_group" />
-            </Principal>
-            <Dependent Role="Lesson">
-              <PropertyRef Name="id_group" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Lesson_Subject">
           <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
           <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
@@ -116,18 +102,6 @@
             </Principal>
             <Dependent Role="Lesson">
               <PropertyRef Name="id_subject" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Lesson_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
-          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="id_teacher" />
-            </Principal>
-            <Dependent Role="Lesson">
-              <PropertyRef Name="id_teacher" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -262,16 +236,8 @@
           <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Сabinet" EntityType="Self.Сabinet" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Lesson_Group" Association="Self.FK_Lesson_Group">
-            <End Role="Group" EntitySet="Group" />
-            <End Role="Lesson" EntitySet="Lesson" />
-          </AssociationSet>
           <AssociationSet Name="FK_Lesson_Subject" Association="Self.FK_Lesson_Subject">
             <End Role="Subject" EntitySet="Subject" />
-            <End Role="Lesson" EntitySet="Lesson" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lesson_Teacher" Association="Self.FK_Lesson_Teacher">
-            <End Role="Teacher" EntitySet="Teacher" />
             <End Role="Lesson" EntitySet="Lesson" />
           </AssociationSet>
           <AssociationSet Name="FK_Lesson_Сabinet" Association="Self.FK_Lesson_Сabinet">
@@ -327,7 +293,6 @@
           <Property Name="id_group" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="kyrs" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Lesson" Relationship="Self.FK_Lesson_Group" FromRole="Group" ToRole="Lesson" />
           <NavigationProperty Name="Replacement" Relationship="Self.FK_Replacement_Group" FromRole="Group" ToRole="Replacement" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_Subject_Group" FromRole="Group" ToRole="Subject" />
         </EntityType>
@@ -340,12 +305,8 @@
           <Property Name="number" Type="Int32" Nullable="false" />
           <Property Name="even" Type="Int32" Nullable="false" />
           <Property Name="id_cabinet" Type="Int32" Nullable="false" />
-          <Property Name="id_teacher" Type="Int32" Nullable="false" />
-          <Property Name="id_group" Type="Int32" Nullable="false" />
           <Property Name="id_subject" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Group" Relationship="Self.FK_Lesson_Group" FromRole="Lesson" ToRole="Group" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_Lesson_Subject" FromRole="Lesson" ToRole="Subject" />
-          <NavigationProperty Name="Teacher" Relationship="Self.FK_Lesson_Teacher" FromRole="Lesson" ToRole="Teacher" />
           <NavigationProperty Name="Сabinet" Relationship="Self.FK_Lesson_Сabinet" FromRole="Lesson" ToRole="Сabinet" />
           <NavigationProperty Name="Replacement" Relationship="Self.FK_Replacement_Lesson" FromRole="Lesson" ToRole="Replacement" />
         </EntityType>
@@ -394,7 +355,7 @@
             <PropertyRef Name="id_subject_name" />
           </Key>
           <Property Name="id_subject_name" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_Subject_SubjectName" FromRole="SubjectName" ToRole="Subject" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -413,7 +374,6 @@
           </Key>
           <Property Name="id_teacher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Lesson" Relationship="Self.FK_Lesson_Teacher" FromRole="Teacher" ToRole="Lesson" />
           <NavigationProperty Name="Replacement" Relationship="Self.FK_Replacement_Teacher" FromRole="Teacher" ToRole="Replacement" />
           <NavigationProperty Name="Subject" Relationship="Self.FK_Subject_Teacher" FromRole="Teacher" ToRole="Subject" />
         </EntityType>
@@ -436,18 +396,6 @@
           <NavigationProperty Name="Lesson" Relationship="Self.FK_Lesson_Сabinet" FromRole="Сabinet" ToRole="Lesson" />
           <NavigationProperty Name="Replacement" Relationship="Self.FK_Replacement_Сabinet" FromRole="Сabinet" ToRole="Replacement" />
         </EntityType>
-        <Association Name="FK_Lesson_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="1" />
-          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="id_group" />
-            </Principal>
-            <Dependent Role="Lesson">
-              <PropertyRef Name="id_group" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Replacement_Group">
           <End Role="Group" Type="Self.Group" Multiplicity="1" />
           <End Role="Replacement" Type="Self.Replacement" Multiplicity="*" />
@@ -481,18 +429,6 @@
             </Principal>
             <Dependent Role="Lesson">
               <PropertyRef Name="id_subject" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Lesson_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
-          <End Role="Lesson" Type="Self.Lesson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="id_teacher" />
-            </Principal>
-            <Dependent Role="Lesson">
-              <PropertyRef Name="id_teacher" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -603,10 +539,6 @@
           <EntitySet Name="Teacher" EntityType="Self.Teacher" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Сabinet" EntityType="Self.Сabinet" />
-          <AssociationSet Name="FK_Lesson_Group" Association="Self.FK_Lesson_Group">
-            <End Role="Group" EntitySet="Group" />
-            <End Role="Lesson" EntitySet="Lesson" />
-          </AssociationSet>
           <AssociationSet Name="FK_Replacement_Group" Association="Self.FK_Replacement_Group">
             <End Role="Group" EntitySet="Group" />
             <End Role="Replacement" EntitySet="Replacement" />
@@ -617,10 +549,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Lesson_Subject" Association="Self.FK_Lesson_Subject">
             <End Role="Subject" EntitySet="Subject" />
-            <End Role="Lesson" EntitySet="Lesson" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Lesson_Teacher" Association="Self.FK_Lesson_Teacher">
-            <End Role="Teacher" EntitySet="Teacher" />
             <End Role="Lesson" EntitySet="Lesson" />
           </AssociationSet>
           <AssociationSet Name="FK_Lesson_Сabinet" Association="Self.FK_Lesson_Сabinet">
@@ -679,8 +607,6 @@
                 <ScalarProperty Name="number" ColumnName="number" />
                 <ScalarProperty Name="even" ColumnName="even" />
                 <ScalarProperty Name="id_cabinet" ColumnName="id_cabinet" />
-                <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
-                <ScalarProperty Name="id_group" ColumnName="id_group" />
                 <ScalarProperty Name="id_subject" ColumnName="id_subject" />
               </MappingFragment>
             </EntityTypeMapping>

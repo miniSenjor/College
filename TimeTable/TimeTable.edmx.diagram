@@ -4,22 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="773abfd4fe1f4beb9003de7b64043f68" Name="Diagram1">
-        <EntityTypeShape EntityType="TimeTableModel.Group" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTableModel.Lesson" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTableModel.Replacement" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTableModel.Role" Width="1.5" PointX="5.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTableModel.Subject" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTableModel.SubjectName" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTableModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTableModel.Teacher" Width="1.5" PointX="3.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTableModel.User" Width="1.5" PointX="8" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TimeTableModel.Сabinet" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="TimeTableModel.FK_Lesson_Group" ManuallyRouted="false" />
+      <Diagram DiagramId="e78c0831685a4d7e85eaf70e05aa580c" Name="Diagram1">
+        <EntityTypeShape EntityType="TimeTableModel.Group" Width="1.5" PointX="3.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Lesson" Width="1.5" PointX="8.625" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Replacement" Width="1.5" PointX="1.125" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Role" Width="1.5" PointX="7.875" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Subject" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.SubjectName" Width="1.5" PointX="3.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.sysdiagrams" Width="1.5" PointX="10.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Teacher" Width="1.5" PointX="3.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.User" Width="1.5" PointX="10.125" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="TimeTableModel.Сabinet" Width="1.5" PointX="4.625" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="TimeTableModel.FK_Replacement_Group" ManuallyRouted="false" />
         <AssociationConnector Association="TimeTableModel.FK_Subject_Group" ManuallyRouted="false" />
         <AssociationConnector Association="TimeTableModel.FK_Lesson_Subject" ManuallyRouted="false" />
-        <AssociationConnector Association="TimeTableModel.FK_Lesson_Teacher" ManuallyRouted="false" />
         <AssociationConnector Association="TimeTableModel.FK_Lesson_Сabinet" ManuallyRouted="false" />
         <AssociationConnector Association="TimeTableModel.FK_Replacement_Lesson" ManuallyRouted="false" />
         <AssociationConnector Association="TimeTableModel.FK_Replacement_Subject" ManuallyRouted="false" />

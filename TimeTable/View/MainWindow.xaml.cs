@@ -10,18 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeTable.View;
+using TimeTable.ViewModel;
 
 namespace TimeTable
 {
     /// <summary>
-    /// Логика взаимодействия для LogIN.xaml
+    /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class LogIN : Window
+    public partial class MainWindow : Window
     {
-        public LogIN()
+        public MainWindow()
         {
             InitializeComponent();
+            Navigation.Initialize(MainFrame);
+            Navigation.Navigate(new LoginView());
         }
     }
 }
