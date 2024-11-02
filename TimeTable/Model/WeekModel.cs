@@ -8,7 +8,7 @@ namespace TimeTable.Model
 {
     public class WeekModel
     {
-        public string GroupName { get; set; } // Например, "Понедельник", "Вторник"
+        public string GroupName { get; set; }
         public List<DayModel> Days { get; set; }
     }
 }

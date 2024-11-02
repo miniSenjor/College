@@ -9,48 +9,39 @@
       Title="TimeTableView">
 
     <Grid>
-        <StackPanel>
-            <ListBox>
-                <ListBoxItem>
-                    
-                </ListBoxItem>
-            </ListBox>
-            <ListBox ItemsSource="{Binding Weeks}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="10">
-                            <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding GroupName}" />
-                            <ItemsControl ItemsSource="{Binding Days}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" Margin="5">
-                                            <!-- Вертикальный текст для дня недели -->
-                                            <TextBlock Width="100" Text="{Binding DayName}">
-                                                <TextBlock.RenderTransform>
-                                                    <RotateTransform Angle="270"/>
-                                                </TextBlock.RenderTransform>
-                                            </TextBlock>
+        <ListView ItemsSource="{Binding Weeks}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="10">
+                        <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding GroupName}"/>
+                        <ItemsControl ItemsSource="{Binding Days}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <!-- Вертикальный текст для дня недели -->
+                                        <TextBlock Width="100" Text="{Binding DayName}">
 
-                                            <ItemsControl ItemsSource="{Binding Lessons}">
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Margin="10">
-                                                            <TextBlock Text="{Binding PairNumber}" />
-                                                            <TextBlock Text="{Binding Subject}" />
-                                                            <TextBlock Text="{Binding Teacher}" />
-                                                            <TextBlock Text="{Binding Room}" />
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
+                                        </TextBlock>
+
+                                        <ItemsControl ItemsSource="{Binding Lessons}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Margin="10">
+                                                        <TextBlock Text="{Binding Number}"/>
+                                                        <TextBlock Text="{Binding Subject}"/>
+                                                        <TextBlock Text="{Binding Teacher}"/>
+                                                        <TextBlock Text="{Binding Cabinet}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
