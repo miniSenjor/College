@@ -12,22 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TimeTable.ViewModel;
 
 namespace TimeTable.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainView.xaml
+    /// Логика взаимодействия для AddLessonView.xaml
     /// </summary>
-    public partial class MainView : Page
+    public partial class AddLessonView : Page
     {
-        public MainView(string l = "Пусто", string p = "Пусто")
+        public AddLessonView()
         {
             InitializeComponent();
-            DataContext = new MainViewModel(l,p);
-            tl.Text = l;
-            tp.Text = p;
-            //dgGroups.ItemsSource = App.GetContext().Group.ToList();
         }
     }
 }

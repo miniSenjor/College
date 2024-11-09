@@ -10,6 +10,8 @@
 
     <Grid>
         <StackPanel>
+            <TextBlock x:Name="tl" Text="{Binding log}"/>
+            <TextBlock x:Name="tp" Text="{Binding pas}"/>
             <ListBox ItemsSource="{Binding WeeklySchedules}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

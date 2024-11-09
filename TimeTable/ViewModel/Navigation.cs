@@ -7,6 +7,9 @@ using System.Windows.Controls;
 
 namespace TimeTable.ViewModel
 {
+    /// <summary>
+    /// Класс для навигации в приложении между страницами
+    /// </summary>
     public class Navigation
     {
         private static Frame _mainFrame;
@@ -24,6 +27,10 @@ namespace TimeTable.ViewModel
         /// </summary>
         /// <param name="page"></param>
 
+        /// <summary>
+        /// Переход на новую страницу
+        /// </summary>
+        /// <param name="page">Новая страница</param>
         public static void Navigate(Page page)
         {
             _mainFrame.Content = page;

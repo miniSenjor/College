@@ -8,8 +8,21 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TimeTableView">
 
-    <Grid>
-        <ListView ItemsSource="{Binding Weeks}" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Command="{Binding BackCommand}"
+                Grid.Column="0" 
+                Height="40" 
+                VerticalAlignment="Top">
+            Назад
+        </Button>
+        <ListView ItemsSource="{Binding Weeks}" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                  ScrollViewer.CanContentScroll="True"
+                  Grid.Column="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="10">

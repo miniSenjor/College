@@ -25,5 +25,12 @@ namespace TimeTable.ViewModel
         {
             MessageBox.Show("Privet");
         }
+        public string log;
+        public string pas;
+        public MainViewModel(string l="Пусто", string p="Пусто")
+        {
+            log = l;
+            pas = p;
+        }
     }
 }

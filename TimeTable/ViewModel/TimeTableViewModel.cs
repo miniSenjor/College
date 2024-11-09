@@ -19,21 +19,30 @@ namespace TimeTable.ViewModel
         {
             LoadData();
         }
+
+        private RelayCommand _backCommand;
+        public RelayCommand BackCommand
+        {
+            get
+            {
+                if (_backCommand == null)
+                    _backCommand = new RelayCommand(Back);
+                return _backCommand;
+            }
+        }
+
+        private void Back(object obj)
+        {
+            Navigation.GoBack();
+        }
+
+
         /// <summary>
         /// Метод подгрузки данных
         /// <code>Method LoadData()</code>
         /// </summary>
         private void LoadData()
         {
-            /*Weeks = new ObservableCollection<WeekModel>();
-            WeekModel week = new WeekModel();
-            week.GroupName = "dfsg";
-            List<DayModel> days = new List<DayModel>();
-            List<LessonModel> les = new List<LessonModel>();
-            days.Add(new DayModel { DayName = "Понедельник", Lessons = les });
-            week.Days = days;
-            Weeks.Add(week);*/
-
             var groups = App.GetContext().Group.ToList(); // Получаем все группы в память
 
             Weeks = new ObservableCollection<WeekModel>(

@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace TimeTable.ViewModel
 {
+    /// <summary>
+    /// Класс для привязки command из разметки к методу во ViewModel
+    /// </summary>
     public class RelayCommand : ICommand
     {
         private readonly Action<object> _execute;

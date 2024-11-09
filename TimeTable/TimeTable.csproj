@@ -44,8 +44,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,6 +74,7 @@
     </Compile>
     <Compile Include="Model\DayModel.cs" />
     <Compile Include="Model\LessonModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\WeekModel.cs" />
     <Compile Include="Replacement.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
@@ -114,6 +117,12 @@
     <Compile Include="ViewModel\Navigation.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\TimeTableViewModel.cs" />
+    <Compile Include="View\AddLessonView.xaml.cs">
+      <DependentUpon>AddLessonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddSubjectView.xaml.cs">
+      <DependentUpon>AddSubjectView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -123,9 +132,20 @@
     <Compile Include="View\TimeTableView.xaml.cs">
       <DependentUpon>TimeTableView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Control\TextBoxClear.xaml.cs">
+      <DependentUpon>TextBoxClear.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Сabinet.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
+    <Page Include="View\AddLessonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddSubjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\TimeTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Control\TextBoxClear.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
