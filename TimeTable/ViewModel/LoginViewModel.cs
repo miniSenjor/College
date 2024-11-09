@@ -10,6 +10,7 @@ using System.Net;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Contexts;
+using System.Data.Entity;
 
 namespace TimeTable.ViewModel
 {
@@ -44,10 +45,7 @@ namespace TimeTable.ViewModel
         public string Login
         {
             get { return _login; }
-            set
-            {
-                _login = value;
-            }
+            set { _login = value; }
         }
         public string Password
         {
@@ -55,10 +53,18 @@ namespace TimeTable.ViewModel
             set { _password = value; }
         }
 
-        private void Authorization(object obj)
+        private async void Authorization(object obj)
         {
-            if (_context.User.FirstOrDefault(u => u.login == _login && u.password == _password)!=null)
-                Navigation.Navigate(new MainView(Login, Password));
+            try
+            {
+                User currentUser = await _context.User.FirstAsync(u => u.login == _login && u.password == _password);
+                if (currentUser != null)
+                    Navigation.Navigate(new TimeTableView());
+            }
+            catch 
+            {
+                MessageBox.Show("Пользователь не найден");
+            }
         }
     }
 }

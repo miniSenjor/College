@@ -14,18 +14,35 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
-            <ComboBox x:Name="cbNameSubject"/>
+            <ComboBox x:Name="cbSubjectName" 
+                      ItemsSource="{Binding Subjects}" 
+                      DisplayMemberPath="name" 
+                      SelectedValuePath="id_subject_name" 
+                      SelectedValue="{Binding CurrentSubject.id_subject_name}"/>
+            <ComboBox x:Name="cbTeacherFIO" 
+                      ItemsSource="{Binding Teachers}" 
+                      DisplayMemberPath="FIO" 
+                      SelectedValuePath="id_teacher" 
+                      SelectedValue="{Binding CurrentSubject.id_teacher}"/>
+            <ComboBox x:Name="cbGroupName" 
+                      ItemsSource="{Binding Groups}" 
+                      DisplayMemberPath="name" 
+                      SelectedValuePath="id_group" 
+                      SelectedValue="{Binding CurrentSubject.id_group}"/>
             <ListView>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
         <StackPanel Grid.Column="1">
+            <TextBlock Text="Количество часов"/>
+            <TextBox Text="{Binding CurrentSubject.time}"/>
             <TextBox/>
-            <TextBox/>
+            <Button Command="{Binding CreateNewSubjectCommand}">
+                Создать
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

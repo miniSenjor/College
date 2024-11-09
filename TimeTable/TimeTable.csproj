@@ -112,6 +112,7 @@
     <Compile Include="User.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddSubjectViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Navigation.cs" />

@@ -29,7 +29,7 @@ namespace TimeTable
             ///<inheritdoc/>
             Navigation.Initialize(MainFrame);
             ///<summary>Возращение к странице с авторизацией</summary>
-            Navigation.Navigate(new LoginView());
+            Navigation.Navigate(new AddSubjectView());
         }
     }
 }
