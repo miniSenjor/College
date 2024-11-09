@@ -18,12 +18,14 @@ namespace TimeTable.View
 {
     /// <summary>
     /// Логика взаимодействия для LoginView.xaml
+    /// <inheritdoc/>
     /// </summary>
     public partial class LoginView : Page
     {
         public LoginView()
         {
             InitializeComponent();
+            ///<summary>Получаем логику из ViewModel для будущего взаимодействия с логикой</summary>
             DataContext = new LoginViewModel();
         }
     }

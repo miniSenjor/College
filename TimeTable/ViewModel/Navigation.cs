@@ -11,16 +11,27 @@ namespace TimeTable.ViewModel
     {
         private static Frame _mainFrame;
 
+        /// <summary>
+        /// Иницилизировали методом страницу
+        /// </summary>
+        /// <param name="mainFrame"></param>
         public static void Initialize(Frame mainFrame)
         {
             _mainFrame = mainFrame;
         }
+        /// <summary>
+        /// Иницируем страницу куда хотим перейти
+        /// </summary>
+        /// <param name="page"></param>
 
         public static void Navigate(Page page)
         {
             _mainFrame.Content = page;
         }
 
+        /// <summary>
+        /// Серегин кастом метод для перехода назад на прошлую страницу
+        /// </summary>
         public static void GoBack()
         {
             if (_mainFrame.CanGoBack)

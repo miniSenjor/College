@@ -24,7 +24,10 @@ namespace TimeTable.View
         public MainView()
         {
             InitializeComponent();
+            ///<summary>Получаем логику из ViewModel для будущего взаимодействия с логикой</summary>
             DataContext = new MainViewModel();
+            ///<summary>Заполняем данными из БД</summary>
+            ///<remarks>Берём данные групп в листе, и заполняем</remarks>
             dgGroups.ItemsSource = App.GetContext().Group.ToList();
         }
     }

@@ -24,6 +24,7 @@ namespace TimeTable.View
         public TimeTableView()
         {
             InitializeComponent();
+            ///<summary>Получаем логику из ViewModel для будущего взаимодействия с логикой</summary>
             DataContext = new TimeTableViewModel();
         }
     }

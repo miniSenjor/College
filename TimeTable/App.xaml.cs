@@ -9,7 +9,13 @@ using System.Windows;
 namespace TimeTable
 {
     /// <summary>
-    /// Логика взаимодействия для App.xaml
+    /// Логика взаимодействия для App.xaml.
+    /// Здесь только инициализация контекста
+    /// <inheritdoc/>
+    /// <code>
+    /// Field _context - хранит в себе контекст экземпляра класса БД
+    /// Method GetContext() - создает экземпяр класса для контекста
+    /// </code>
     /// </summary>
     public partial class App : Application
     {

@@ -19,7 +19,10 @@ namespace TimeTable.ViewModel
         {
             LoadData();
         }
-
+        /// <summary>
+        /// Метод подгрузки данных
+        /// <code>Method LoadData()</code>
+        /// </summary>
         private void LoadData()
         {
             /*Weeks = new ObservableCollection<WeekModel>();

@@ -25,7 +25,10 @@ namespace TimeTable
         public MainWindow()
         {
             InitializeComponent();
+            ///<summary>Инициализируем нашу страницу для отражения таблицы с группами</summary>
+            ///<inheritdoc/>
             Navigation.Initialize(MainFrame);
+            ///<summary>Возращение к странице с авторизацией</summary>
             Navigation.Navigate(new LoginView());
         }
     }
