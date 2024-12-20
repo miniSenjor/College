@@ -23,17 +23,22 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Visible" 
                   ScrollViewer.CanContentScroll="True"
                   Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="3"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="10">
+                    <StackPanel Margin="10" >
                         <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding GroupName}"/>
                         <ItemsControl ItemsSource="{Binding Days}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                    <StackPanel Orientation="Horizontal" Margin="5" VerticalAlignment="Top">
                                         <!-- Вертикальный текст для дня недели -->
-                                        <TextBlock Width="100" Text="{Binding DayName}">
-                                        </TextBlock>
+                                        <TextBlock Text="{Binding DayName}"></TextBlock>
                                         <ItemsControl ItemsSource="{Binding Lessons}">
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>

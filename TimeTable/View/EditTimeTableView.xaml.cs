@@ -26,5 +26,7 @@ namespace TimeTable.View
             InitializeComponent();
             DataContext = new EditTimeTableViewModel();
         }
+
+    
     }
 }
