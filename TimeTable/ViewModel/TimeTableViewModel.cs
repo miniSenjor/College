@@ -86,20 +86,23 @@ namespace TimeTable.ViewModel
 
         private string GetDayName(int dayOfWeek)
         {
-            if (dayOfWeek == 1)
-                return "Понедельник";
-            else if (dayOfWeek == 2)
-                return "Вторник";
-            else if (dayOfWeek == 3)
-                return "Среда";
-            else if (dayOfWeek == 4)
-                return "Четверг";
-            else if (dayOfWeek == 5)
-                return "Пятница";
-            else if (dayOfWeek == 6)
-                return "Суббота";
-            else
-                throw new ArgumentOutOfRangeException(nameof(dayOfWeek), "Неверный номер дня недели");
+            switch(dayOfWeek)
+            {
+                case 1:
+                    return "Понедельник";
+                case 2:
+                    return "Вторник";
+                case 3:
+                    return "Среда";
+                case 4:
+                    return "Четверг";
+                case 5:
+                    return "Пятница";
+                case 6:
+                    return "Суббота";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(dayOfWeek), "Неверный номер дня недели"); ;
+            }
         }
 
 
