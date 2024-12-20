@@ -26,16 +26,16 @@
                 <Button Command="{Binding AddCabinetCommand}">
                     Добавить кабинет
                 </Button>
-                <Button>
+                <Button Command="{Binding AddTeacherCommand}">
                     Добавить препода
                 </Button>
-                <Button>
+                <Button Command="{Binding AddGroupCommand}">
                     Добавить группу
                 </Button>
-                <Button>
+                <Button Command="{Binding AddSubjectNameCommand}">
                     Добавить название предмета
                 </Button>
-                <Button>
+                <Button Command="{Binding AddSubjectCommand}">
                     Добавить предмет
                 </Button>
             </StackPanel>

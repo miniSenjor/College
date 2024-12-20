@@ -106,7 +106,7 @@ namespace TimeTable.ViewModel
         }
         private void AddSubject(object obj)
         {
-            Navigation.Navigate(new AddSomethingView());
+            Navigation.Navigate(new AddSubjectView());
         }
     }
 }

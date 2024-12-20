@@ -24,5 +24,9 @@ namespace TimeTable.View
         {
             InitializeComponent();
         }
+        /*public AddSomethingView(Cabinet cabinet):base()
+        {
+
+        }*/
     }
 }
