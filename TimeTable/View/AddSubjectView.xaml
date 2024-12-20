@@ -39,18 +39,15 @@
             <ComboBox x:Name="cbSubjectName" 
                       ItemsSource="{Binding SubjectNames}" 
                       DisplayMemberPath="name" 
-                      SelectedValuePath="id_subject_name" 
-                      SelectedValue="{Binding NewSubject.id_subject_name, Mode=TwoWay}"/>
+                      SelectedValue="{Binding NewSubject.SubjectName, Mode=TwoWay}"/>
             <ComboBox x:Name="cbTeacherFIO" 
                       ItemsSource="{Binding Teachers}" 
                       DisplayMemberPath="FIO" 
-                      SelectedValuePath="id_teacher" 
-                      SelectedValue="{Binding NewSubject.id_teacher, Mode=TwoWay}"/>
+                      SelectedValue="{Binding NewSubject.Teacher, Mode=TwoWay}"/>
             <ComboBox x:Name="cbGroupName" 
                       ItemsSource="{Binding Groups}" 
                       DisplayMemberPath="name" 
-                      SelectedValuePath="id_group" 
-                      SelectedValue="{Binding NewSubject.id_group, Mode=TwoWay}"/>
+                      SelectedValue="{Binding NewSubject.Group, Mode=TwoWay}"/>
             <TextBlock Text="Количество часов"/>
             <TextBox Text="{Binding NewSubject.time}"/>
             <Button Command="{Binding CreateNewSubjectCommand}">

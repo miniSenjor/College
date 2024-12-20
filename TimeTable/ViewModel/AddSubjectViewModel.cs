@@ -103,7 +103,7 @@ namespace TimeTable.ViewModel
 
         private void CreateNewSubject(object obj)
         {
-            if (NewSubject.SubjectName == null || NewSubject.Group == null)
+            if (NewSubject.SubjectName == null || NewSubject.Group == null || NewSubject.Teacher==null)
             {
                 MessageBox.Show("Не выбраны поля для создания Предмета");
                 return;
@@ -111,7 +111,7 @@ namespace TimeTable.ViewModel
             try 
             {
                 _context.Subject.Add(NewSubject);
-                //_context.SaveChanges();
+                _context.SaveChanges();
                 ListSubjects.Add(NewSubject);
                 MessageBox.Show("Предмет упешно создан");
             }
@@ -131,7 +131,7 @@ namespace TimeTable.ViewModel
             try
             {
                 MessageBox.Show(SelectedSubject.time.ToString());
-                //_context.SaveChanges();
+                _context.SaveChanges();
             }
             catch (Exception ex)
             {
