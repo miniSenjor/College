@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using TimeTable.View;
 
 namespace TimeTable.ViewModel
 {
@@ -15,6 +17,7 @@ namespace TimeTable.ViewModel
             _context = App.GetContext();
             Group = new Group();
             _context.Group.Add(Group);
+            Groups = new ObservableCollection<Group>(_context.Group);
         }
         private TimeTableEntities _context;
         private Group _group;
@@ -22,6 +25,12 @@ namespace TimeTable.ViewModel
         {
             get => _group;
             set => SetField(ref _group, value);
+        }
+        private ObservableCollection<Group> _groups;
+        public ObservableCollection<Group> Groups
+        {
+            get => _groups;
+            set => SetField(ref _groups, value);
         }
         private void SetField<T>(ref T field, T newValue)
         {
@@ -35,6 +44,22 @@ namespace TimeTable.ViewModel
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private RelayCommand _newGroupCommand;
+        public RelayCommand NewGroupCommand
+        {
+            get
+            {
+                if (_newGroupCommand == null)
+                    _newGroupCommand = new RelayCommand(NewGroup);
+                return _newGroupCommand;
+            }
+        }
+
+        private void NewGroup(object obj)
+        {
+            Navigation.Navigate(new AddGroupView());
         }
 
         private RelayCommand _saveCommand;

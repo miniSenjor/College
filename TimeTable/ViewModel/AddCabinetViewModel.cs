@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using TimeTable.View;
 
 namespace TimeTable.ViewModel
 {
@@ -14,6 +16,7 @@ namespace TimeTable.ViewModel
         {
             _context = App.GetContext();
             Cabinet = new Сabinet();
+            Cabinets = new ObservableCollection<Сabinet>(_context.Сabinet);
             _context.Сabinet.Add(Cabinet);
         }
         private TimeTableEntities _context;
@@ -22,6 +25,12 @@ namespace TimeTable.ViewModel
         {
             get => _cabinet;
             set => SetField(ref _cabinet, value);
+        }
+        private ObservableCollection<Сabinet> _cabinets;
+        public ObservableCollection<Сabinet> Cabinets
+        {
+            get => _cabinets;
+            set => SetField(ref _cabinets, value);
         }
         private void SetField<T>(ref T field, T newValue)
         {
@@ -35,6 +44,23 @@ namespace TimeTable.ViewModel
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private RelayCommand _newCabinetCommand;
+        public RelayCommand NewCabinetCommand
+        {
+            get
+            {
+                if (_newCabinetCommand == null)
+                    _newCabinetCommand = new RelayCommand(NewCabinet);
+                return _newCabinetCommand;
+            }
+        }
+
+        private void NewCabinet(object obj)
+        {
+            //Navigation.Navigate(new AddCabinetView());
+            MessageBox.Show(Cabinet.number.ToString());
         }
 
         private RelayCommand _saveCommand;

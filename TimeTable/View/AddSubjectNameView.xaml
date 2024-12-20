@@ -9,13 +9,20 @@
       Title="AddSubjectNameView">
 
     <Grid Background="White">
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left">
                     Название
                 </TextBlock>
                 <TextBox Text="{Binding SubjectName.name}"/>
             </DockPanel>
+            <Button Command="{Binding NewSubjectNameCommand}">
+                Название предмета новое
+            </Button>
             <Button Command="{Binding SaveCommand}">
                 Сохранить
             </Button>
@@ -23,5 +30,15 @@
                 Назад
             </Button>
         </StackPanel>
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding SubjectNames}" 
+                  SelectedItem="{Binding SubjectName, Mode=TwoWay}" 
+                  d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

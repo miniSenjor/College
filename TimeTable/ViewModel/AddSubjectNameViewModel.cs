@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using TimeTable.View;
 
 namespace TimeTable.ViewModel
 {
@@ -15,6 +17,7 @@ namespace TimeTable.ViewModel
             _context = App.GetContext();
             SubjectName = new SubjectName();
             _context.SubjectName.Add(SubjectName);
+            SubjectNames = new ObservableCollection<SubjectName>(_context.SubjectName);
         }
         private TimeTableEntities _context;
         private SubjectName _subjectName;
@@ -22,6 +25,12 @@ namespace TimeTable.ViewModel
         {
             get => _subjectName;
             set => SetField(ref _subjectName, value);
+        }
+        private ObservableCollection<SubjectName> _subjectNames;
+        public ObservableCollection<SubjectName> SubjectNames
+        {
+            get => _subjectNames;
+            set => SetField(ref _subjectNames, value);
         }
         private void SetField<T>(ref T field, T newValue)
         {
@@ -35,6 +44,22 @@ namespace TimeTable.ViewModel
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private RelayCommand _newSubjectNameCommand;
+        public RelayCommand NewSubjectNameCommand
+        {
+            get
+            {
+                if (_newSubjectNameCommand == null)
+                    _newSubjectNameCommand = new RelayCommand(NewSubjectName);
+                return _newSubjectNameCommand;
+            }
+        }
+
+        private void NewSubjectName(object obj)
+        {
+            Navigation.Navigate(new AddSubjectNameView());
         }
 
         private RelayCommand _saveCommand;
