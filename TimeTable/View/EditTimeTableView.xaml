@@ -21,7 +21,8 @@
                 Назад
             </Button>
             <ComboBox ItemsSource="{Binding Groups}"
-                      SelectedItem="{Binding Group}"/>
+                      SelectedItem="{Binding Group}"
+                      DisplayMemberPath="name"/>
         </StackPanel>
         <ListView ItemsSource="{Binding Weeks}" 
               ScrollViewer.CanContentScroll="True"
