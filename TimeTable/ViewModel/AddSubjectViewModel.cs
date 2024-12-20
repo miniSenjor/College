@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace TimeTable.ViewModel
 {
@@ -14,33 +16,33 @@ namespace TimeTable.ViewModel
         private readonly TimeTableEntities _context;
         //без гет сет ошибка привязки данных через биндинг
         private ObservableCollection<SubjectName> _subjectNames;
-        public ObservableCollection<SubjectName> SubjectNames 
+        public ObservableCollection<SubjectName> SubjectNames
         {
             get => _subjectNames;
             set => SetField(ref _subjectNames, value);
         }
         private ObservableCollection<Teacher> _teachers;
-        public ObservableCollection<Teacher> Teachers 
-        { 
+        public ObservableCollection<Teacher> Teachers
+        {
             get => _teachers;
             set => SetField(ref _teachers, value);
         }
         private ObservableCollection<Group> _groups;
-        public ObservableCollection<Group> Groups 
-        { 
+        public ObservableCollection<Group> Groups
+        {
             get => _groups;
             set => SetField(ref _groups, value);
         }
         private Subject _newSubject;
-        public Subject NewSubject 
-        { 
-            get => _newSubject; 
+        public Subject NewSubject
+        {
+            get => _newSubject;
             set => SetField(ref _newSubject, value);
         }
         private Subject _selectedSubject;
         public Subject SelectedSubject
         {
-            get =>_selectedSubject;
+            get => _selectedSubject;
             set => SetField(ref _selectedSubject, value);
         }
         private ObservableCollection<Subject> _listSubjects;
@@ -85,12 +87,14 @@ namespace TimeTable.ViewModel
             }
         }
 
+
+
         public AddSubjectViewModel()
         {
             _context = App.GetContext();
             LoadData();
             NewSubject = new Subject();
-            //LstSubjectName.AddRange(_context.SubjectName.Select(s => s.name).ToList());
+            SelectedSubject = new Subject();
         }
 
         private void LoadData()
@@ -103,19 +107,19 @@ namespace TimeTable.ViewModel
 
         private void CreateNewSubject(object obj)
         {
-            if (NewSubject.SubjectName == null || NewSubject.Group == null || NewSubject.Teacher==null)
+            if (NewSubject.SubjectName == null || NewSubject.Group == null || NewSubject.Teacher == null)
             {
                 MessageBox.Show("Не выбраны поля для создания Предмета");
                 return;
             }
-            try 
+            try
             {
                 _context.Subject.Add(NewSubject);
                 _context.SaveChanges();
                 ListSubjects.Add(NewSubject);
                 MessageBox.Show("Предмет упешно создан");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка добавления предмета");
             }
@@ -130,13 +134,32 @@ namespace TimeTable.ViewModel
             }
             try
             {
-                MessageBox.Show(SelectedSubject.time.ToString());
+                _context.Subject.AddOrUpdate(NewSubject);
                 _context.SaveChanges();
+                MessageBox.Show("Сохранено");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка сохранения предмета");
             }
         }
+
+        private RelayCommand _backCommand;
+        public RelayCommand BackCommand
+        {
+            get
+            {
+                if (_backCommand == null)
+                    _backCommand = new RelayCommand(Back);
+                return _backCommand;
+            }
+        }
+
+        private void Back(object obj)
+        {
+            Navigation.GoBack();
+        }
+
+
     }
 }

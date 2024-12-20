@@ -17,60 +17,60 @@
             <ComboBox ItemsSource="{Binding Groups}" 
                       DisplayMemberPath="name" 
                       DockPanel.Dock="Top"
-                      SelectedItem="{Binding SelectedSubject.Group}"/>
+                      SelectedItem="{Binding Group}"/>
         <ListView ItemsSource="{Binding ListSubjects}"
-                  SelectedItem="{Binding SelectedSubject}"
+                  SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"
                   DockPanel.Dock="Bottom"
+                  SelectionChanged="ListView_SelectionChanged"
                   d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="10">
-                        <TextBlock FontSize="16" Text="{Binding SubjectName.name}"/>
-                        <TextBlock Text="{Binding Group.name}"/>
-                        <TextBlock Text="{Binding Teacher.FIO}"/>
-                        <TextBlock Text="{Binding time}"/>
+                            <TextBlock FontSize="16" Text="{Binding SubjectName.name, Mode=TwoWay}"/>
+                            <TextBlock Text="{Binding Group.name, Mode=TwoWay}"/>
+                            <TextBlock Text="{Binding Teacher.FIO, Mode=TwoWay}"/>
+                            <TextBlock Text="{Binding time, Mode=TwoWay}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         </DockPanel>
         <StackPanel Grid.Column="1" Background="White">
-            <TextBlock Text="Новый предмет" FontWeight="Bold"/>
+            <TextBlock Text="Предмет" FontWeight="Bold"/>
             <ComboBox x:Name="cbSubjectName" 
                       ItemsSource="{Binding SubjectNames}" 
                       DisplayMemberPath="name" 
-                      SelectedValue="{Binding NewSubject.SubjectName, Mode=TwoWay}"/>
+                      SelectedItem="{Binding NewSubject.SubjectName}"/>
             <ComboBox x:Name="cbTeacherFIO" 
                       ItemsSource="{Binding Teachers}" 
                       DisplayMemberPath="FIO" 
-                      SelectedValue="{Binding NewSubject.Teacher, Mode=TwoWay}"/>
+                      SelectedValue="{Binding NewSubject.Teacher}"/>
             <ComboBox x:Name="cbGroupName" 
                       ItemsSource="{Binding Groups}" 
                       DisplayMemberPath="name" 
-                      SelectedValue="{Binding NewSubject.Group, Mode=TwoWay}"/>
+                      SelectedValue="{Binding NewSubject.Group}"/>
             <TextBlock Text="Количество часов"/>
             <TextBox Text="{Binding NewSubject.time}"/>
             <Button Command="{Binding CreateNewSubjectCommand}">
-                Создать
+                Добавить
             </Button>
+            
             <TextBlock Text="Редактирование предмета" FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding SubjectNames}" 
                       DisplayMemberPath="name" 
-                      SelectedValuePath="id_subject_name" 
-                      SelectedItem="{Binding SelectedSubject.id_subject_name, Mode=TwoWay}"/>
+                      SelectedItem="{Binding SelectedSubject.SubjectName, Mode=TwoWay}"/>
             <ComboBox ItemsSource="{Binding Teachers}" 
                       DisplayMemberPath="FIO" 
-                      SelectedValuePath="id_teacher" 
-                      SelectedItem="{Binding SelectedSubject.id_teacher, Mode=TwoWay}"/>
+                      SelectedItem="{Binding SelectedSubject.Teacher, Mode=TwoWay}"/>
             <ComboBox ItemsSource="{Binding Groups}" 
                       DisplayMemberPath="name" 
-                      SelectedValuePath="id_group" 
-                      SelectedItem="{Binding SelectedSubject.id_group, Mode=TwoWay}"/>
+                      SelectedItem="{Binding SelectedSubject.Group, Mode=TwoWay}"/>
             <TextBlock Text="Количество часов"/>
             <TextBox Text="{Binding SelectedSubject.time, Mode=TwoWay}"/>
             <Button Command="{Binding SaveSelectedSubjectCommand}">
                 Сохранить
             </Button>
+            <Button Command="{Binding BackCommand}">Назад</Button>
         </StackPanel>
     </Grid>
 </Page>

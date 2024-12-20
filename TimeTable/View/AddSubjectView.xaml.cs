@@ -26,5 +26,14 @@ namespace TimeTable.View
             InitializeComponent();
             DataContext = new AddSubjectViewModel();
         }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectionItem = ((ListView)sender).SelectedItem as Subject;
+            AddSubjectViewModel viewModel = DataContext as AddSubjectViewModel;
+            viewModel.SelectedSubject = selectionItem;
+            DataContext = new AddSubjectViewModel();
+            DataContext = viewModel;
+        }
     }
 }
