@@ -76,7 +76,8 @@ namespace TimeTable.ViewModel
                                 Teacher = x.TeacherName,
                                 Cabinet = x.CabinetNumber,
                                 Number = x.LessonNumber
-                            }).ToList()
+                            }).OrderBy(lesson => lesson.Number) // Сортируем по номеру урока
+                            .ToList()
                     }).ToList()
                 }).ToList();
 
