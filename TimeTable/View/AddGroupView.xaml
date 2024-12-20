@@ -9,7 +9,11 @@
       Title="AddGroupView">
 
     <Grid Background="White">
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left">
                     Название
@@ -22,6 +26,9 @@
                 </TextBlock>
                 <TextBox Text="{Binding Group.kyrs}"/>
             </DockPanel>
+            <Button Command="{Binding NewGroupCommand}">
+                Группа новая
+            </Button>
             <Button Command="{Binding SaveCommand}">
                 Сохранить
             </Button>
@@ -29,5 +36,18 @@
                 Назад
             </Button>
         </StackPanel>
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Groups}" 
+                  SelectedItem="{Binding Group, Mode=TwoWay}" 
+                  d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding name}" />
+                        <TextBlock Text="{Binding kyrs}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

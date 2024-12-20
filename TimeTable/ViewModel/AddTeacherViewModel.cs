@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using TimeTable.View;
 
 namespace TimeTable.ViewModel
 {
@@ -82,8 +83,7 @@ namespace TimeTable.ViewModel
 
         private void NewTeacher(object obj)
         {
-            Teacher = new Teacher();
-            Teacher.FIO = "";
+            Navigation.Navigate(new AddTeacherView());
         }
 
         private RelayCommand _backCommand;

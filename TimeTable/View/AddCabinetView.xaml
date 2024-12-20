@@ -20,6 +20,9 @@
                 </TextBlock>
                 <TextBox Text="{Binding Cabinet.number}"/>
             </DockPanel>
+            <Button Command="{Binding NewCabinetCommand}">
+                Кабинет новый
+            </Button>
             <Button Command="{Binding SaveCommand}">
                 Сохранить
             </Button>
