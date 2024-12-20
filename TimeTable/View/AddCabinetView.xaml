@@ -9,7 +9,11 @@
       Title="AddCabinetView">
 
     <Grid Background="White">
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left">
                     Номер
@@ -23,5 +27,15 @@
                 Назад
             </Button>
         </StackPanel>
+        <ListView Grid.Row="1"
+          ItemsSource="{Binding Cabinets}" 
+          SelectedItem="{Binding Cabinet, Mode=TwoWay}" 
+          d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding number}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

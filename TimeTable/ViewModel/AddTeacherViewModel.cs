@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace TimeTable.ViewModel
         {
             _context = App.GetContext();
             Teacher = new Teacher();
+            Teachers = new ObservableCollection<Teacher>( _context.Teacher);
             _context.Teacher.Add(Teacher);
         }
         private TimeTableEntities _context;
@@ -22,6 +24,12 @@ namespace TimeTable.ViewModel
         {
             get => _teacher;
             set => SetField(ref _teacher, value);
+        }
+        private ObservableCollection<Teacher> _teachers;
+        public ObservableCollection<Teacher> Teachers
+        {
+            get => _teachers;
+            set => SetField(ref _teachers, value);
         }
         private void SetField<T>(ref T field, T newValue)
         {
@@ -60,6 +68,24 @@ namespace TimeTable.ViewModel
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private RelayCommand _newTeacherCommand;
+        public RelayCommand NewTeacherCommand
+        {
+            get
+            {
+                if (_newTeacherCommand == null)
+                    _newTeacherCommand = new RelayCommand(NewTeacher);
+                return _newTeacherCommand;
+            }
+        }
+
+        private void NewTeacher(object obj)
+        {
+            Teacher = new Teacher();
+            Teacher.FIO = "";
+        }
+
         private RelayCommand _backCommand;
         public RelayCommand BackCommand
         {

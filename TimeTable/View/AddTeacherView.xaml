@@ -9,13 +9,20 @@
       Title="AddTeacherView">
 
     <Grid Background="White">
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
             <DockPanel>
                 <TextBlock DockPanel.Dock="Left">
                     ФИО
                 </TextBlock>
                 <TextBox Text="{Binding Teacher.FIO}"/>
             </DockPanel>
+            <Button Command="{Binding NewTeacherCommand}">
+                Препод новый
+            </Button>
             <Button Command="{Binding SaveCommand}">
                 Сохранить
             </Button>
@@ -23,5 +30,15 @@
                 Назад
             </Button>
         </StackPanel>
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Teachers}" 
+                  SelectedItem="{Binding Teacher, Mode=TwoWay}" 
+                  d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding FIO}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
