@@ -1,0 +1,65 @@
+﻿<Page x:Class="TimeTable.View.EditTimeTableView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TimeTable.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditTimeTableView">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Button Command="{Binding BackCommand}"
+                Grid.Column="0" 
+                Height="40" 
+                VerticalAlignment="Top">
+                Назад
+            </Button>
+            <ComboBox ItemsSource="{Binding Groups}"
+                      SelectedItem="{Binding Group}"/>
+        </StackPanel>
+        <ListView ItemsSource="{Binding Weeks}" 
+              ScrollViewer.CanContentScroll="True"
+              Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=4}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="10">
+                        <ItemsControl ItemsSource="{Binding Days}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <!-- Вертикальный текст для дня недели -->
+                                        <TextBlock Width="100" Text="{Binding DayName}">
+                                        </TextBlock>
+                                        <ItemsControl ItemsSource="{Binding Lessons}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Margin="10">
+                                                        <TextBlock Text="{Binding Number}"/>
+                                                        <ComboBox ItemsSource="{Binding Subjects}"
+                                                                  SelectedItem="{Binding Lesson.Subject}"/>
+
+                                                        <TextBlock Text="{Binding Subject}"/>
+                                                        <TextBlock Text="{Binding Teacher}"/>
+                                                        <ComboBox ItemsSource="{Binding Cabinets}"
+                                                                  SelectedItem="{Binding Cabinet}"/>
+                                                        <TextBlock Text="{Binding Cabinet}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

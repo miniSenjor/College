@@ -59,8 +59,8 @@ namespace TimeTable.ViewModel
 
         private void NewCabinet(object obj)
         {
-            //Navigation.Navigate(new AddCabinetView());
             MessageBox.Show(Cabinet.number.ToString());
+            Navigation.Navigate(new AddCabinetView());
         }
 
         private RelayCommand _saveCommand;

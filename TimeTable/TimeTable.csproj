@@ -119,6 +119,7 @@
     <Compile Include="ViewModel\AddSubjectViewModel.cs" />
     <Compile Include="ViewModel\AddTeacherViewModel.cs" />
     <Compile Include="ViewModel\AddViewModel.cs" />
+    <Compile Include="ViewModel\EditTimeTableViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Navigation.cs" />
@@ -147,6 +148,9 @@
     </Compile>
     <Compile Include="View\AddView.xaml.cs">
       <DependentUpon>AddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditTimeTableView.xaml.cs">
+      <DependentUpon>EditTimeTableView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -192,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditTimeTableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

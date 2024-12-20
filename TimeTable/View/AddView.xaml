@@ -38,6 +38,9 @@
                 <Button Command="{Binding AddSubjectCommand}">
                     Добавить предмет
                 </Button>
+                <Button Command="{Binding EditTimeTableCommand}">
+                    Изменить расписание
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

@@ -83,6 +83,20 @@ namespace TimeTable.ViewModel
             }
         }
 
+        private RelayCommand _editTimeTableCommand;
+        public RelayCommand EditTimeTableCommand
+        {
+            get
+            {
+                if (_editTimeTableCommand == null)
+                    _editTimeTableCommand = new RelayCommand(EditTimeTable);
+                return _editTimeTableCommand;
+            }
+        }
+        private void EditTimeTable(object obj)
+        {
+            Navigation.Navigate(new EditTimeTableView());
+        }
         private void Back(object obj)
         {
             Navigation.Navigate(new LoginView());
