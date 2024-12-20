@@ -1,4 +1,4 @@
-﻿<Page x:Class="TimeTable.View.AddSomethingView"
+﻿<Page x:Class="TimeTable.View.AddCabinetView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:TimeTable.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddSomethingView">
+      Title="AddCabinetView">
 
     <Grid Background="White">
         <StackPanel>
@@ -14,16 +14,13 @@
                 <TextBlock DockPanel.Dock="Left">
                     Номер
                 </TextBlock>
-                <TextBox Text="{Binding Сabinet.number}"/>
-            </DockPanel>
-            <DockPanel>
-                <TextBlock DockPanel.Dock="Left">
-                    ФИО
-                </TextBlock>
-                <TextBox Text="{Binding Teacher.FIO}"/>
+                <TextBox Text="{Binding Cabinet.number}"/>
             </DockPanel>
             <Button Command="{Binding SaveCommand}">
-                Добавить
+                Сохранить
+            </Button>
+            <Button Command="{Binding BackCommand}">
+                Назад
             </Button>
         </StackPanel>
     </Grid>

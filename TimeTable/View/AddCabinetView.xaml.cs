@@ -17,17 +17,14 @@ using TimeTable.ViewModel;
 namespace TimeTable.View
 {
     /// <summary>
-    /// Логика взаимодействия для AddSomethingView.xaml
+    /// Логика взаимодействия для AddCabinetView.xaml
     /// </summary>
-    public partial class AddSomethingView : Page
+    public partial class AddCabinetView : Page
     {
-        public AddSomethingView()
+        public AddCabinetView()
         {
             InitializeComponent();
-        }
-        public AddSomethingView(Сabinet cabinet)
-        {
-            DataContext = new AddSomethingViewModel(cabinet);
+            DataContext = new AddCabinetViewModel();
         }
     }
 }

@@ -112,21 +112,38 @@
     <Compile Include="User.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddCabinetViewModel.cs" />
+    <Compile Include="ViewModel\AddGroupViewModel.cs" />
+    <Compile Include="ViewModel\AddSomethingViewModel.cs" />
+    <Compile Include="ViewModel\AddSubjectNameViewModel.cs" />
     <Compile Include="ViewModel\AddSubjectViewModel.cs" />
+    <Compile Include="ViewModel\AddTeacherViewModel.cs" />
     <Compile Include="ViewModel\AddViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Navigation.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\TimeTableViewModel.cs" />
+    <Compile Include="View\AddCabinetView.xaml.cs">
+      <DependentUpon>AddCabinetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddGroupView.xaml.cs">
+      <DependentUpon>AddGroupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddLessonView.xaml.cs">
       <DependentUpon>AddLessonView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddSomethingView.xaml.cs">
       <DependentUpon>AddSomethingView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddSubjectNameView.xaml.cs">
+      <DependentUpon>AddSubjectNameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddSubjectView.xaml.cs">
       <DependentUpon>AddSubjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddTeacherView.xaml.cs">
+      <DependentUpon>AddTeacherView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddView.xaml.cs">
       <DependentUpon>AddView.xaml</DependentUpon>
@@ -146,6 +163,14 @@
     <Compile Include="Сabinet.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
+    <Page Include="View\AddCabinetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddLessonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,7 +179,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddSubjectNameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddSubjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddTeacherView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

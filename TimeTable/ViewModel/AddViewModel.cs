@@ -90,19 +90,19 @@ namespace TimeTable.ViewModel
 
         private void AddCabinet(object obj)
         {
-            Navigation.Navigate(new AddSomethingView());
+            Navigation.Navigate(new AddCabinetView());
         }
         private void AddTeacher(object obj)
         {
-            Navigation.Navigate(new AddSomethingView());
+            Navigation.Navigate(new AddTeacherView());
         }
         private void AddGroup(object obj)
         {
-            Navigation.Navigate(new AddSomethingView());
+            Navigation.Navigate(new AddGroupView());
         }
         private void AddSubjectName(object obj)
         {
-            Navigation.Navigate(new AddSomethingView());
+            Navigation.Navigate(new AddSubjectNameView());
         }
         private void AddSubject(object obj)
         {
