@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeTable.Model;
 using TimeTable.ViewModel;
 
 namespace TimeTable.View
@@ -21,10 +23,10 @@ namespace TimeTable.View
     /// </summary>
     public partial class EditTimeTableView : Page
     {
-        public EditTimeTableView()
+        public EditTimeTableView(ObservableCollection<WeekModel> weekModels=null)
         {
             InitializeComponent();
-            DataContext = new EditTimeTableViewModel();
+            DataContext = new EditTimeTableViewModel(weekModels);
         }
 
     

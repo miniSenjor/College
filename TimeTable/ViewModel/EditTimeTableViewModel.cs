@@ -7,16 +7,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TimeTable.Model;
+using TimeTable.View;
 
 namespace TimeTable.ViewModel
 {
     internal class EditTimeTableViewModel
     {
-        public EditTimeTableViewModel() 
+        public EditTimeTableViewModel(ObservableCollection<WeekModel> weekModels=null) 
         {
             _context = App.GetContext();
             Groups = new ObservableCollection<Group>(_context.Group);
-            Weeks = new ObservableCollection<WeekModel>();
+            if (weekModels != null ) 
+            {
+                Weeks = weekModels;   
+            }
+            else
+            {
+                Weeks = new ObservableCollection<WeekModel>();
+            }
+            Cabinets = new ObservableCollection<Сabinet>(_context.Сabinet);
         }
         private TimeTableEntities _context;
         private Group _group;
@@ -44,6 +53,18 @@ namespace TimeTable.ViewModel
         {
             get => _weeks;
             set => SetField(ref _weeks, value);
+        }
+        private Lesson _selectedLesson;
+        public Lesson SelectedLesson
+        {
+            get => _selectedLesson;
+            set => SetField(ref _selectedLesson, value);
+        }
+        private ObservableCollection<Сabinet> _cabinets;
+        public ObservableCollection<Сabinet> Cabinets
+        {
+            get => _cabinets;
+            set => SetField(ref _cabinets, value);
         }
         private bool SetField<T>(ref T field, T newValue)
         {
@@ -126,12 +147,14 @@ namespace TimeTable.ViewModel
                                 Teacher = x.TeacherName,
                                 Cabinet = x.CabinetNumber,
                                 Number = x.LessonNumber
-                            }).ToList()
+                            }).OrderBy(lesson => lesson.Number) // Сортируем по номеру урока
+                            .ToList()
                     }).ToList()
                 }).ToList();
 
             // Обновляем коллекцию Weeks
             Weeks = new ObservableCollection<WeekModel>(groupedData);
+            Navigation.Navigate(new EditTimeTableView(Weeks));
         }
 
         private string GetDayName(int dayOfWeek)

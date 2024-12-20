@@ -12,6 +12,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="90"/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel>
             <Button Command="{Binding BackCommand}"
@@ -25,7 +26,8 @@
                       DisplayMemberPath="name"/>
         </StackPanel>
         <ListView ItemsSource="{Binding Weeks}" 
-              ScrollViewer.CanContentScroll="True"
+                    ScrollViewer.CanContentScroll="True"
+                  SelectedItem="{Binding SelectedLesson, Mode=TwoWay}"
               Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=4}">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -42,13 +44,8 @@
                                                 <DataTemplate>
                                                     <StackPanel Margin="10">
                                                         <TextBlock Text="{Binding Number}"/>
-                                                        <ComboBox ItemsSource="{Binding Subjects}"
-                                                                  SelectedItem="{Binding Lesson.Subject}"/>
-
-                                                        <TextBlock Text="{Binding Subject}"/>
+                                                        <TextBlock Text="{Binding Subject.name}"/>
                                                         <TextBlock Text="{Binding Teacher}"/>
-                                                        <ComboBox ItemsSource="{Binding Cabinets}"
-                                                                  SelectedItem="{Binding Cabinet}"/>
                                                         <TextBlock Text="{Binding Cabinet}"/>
                                                     </StackPanel>
                                                 </DataTemplate>
@@ -62,5 +59,80 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Grid.Column="2" Background="White">
+            <TextBlock Text="Урок" FontWeight="Bold"/>
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left">
+                    День недели
+                </TextBlock>
+                <ComboBox SelectedItem="{Binding SelectedLesson.day}">
+                    <ComboBoxItem>
+                        1
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        2
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        3
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        4
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        5
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        6
+                    </ComboBoxItem>
+                </ComboBox>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left">
+                   №
+                </TextBlock>
+                <ComboBox SelectedItem="{Binding SelectedLesson.number}">
+                    <ComboBoxItem>
+                        1
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        2
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        3
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        4
+                    </ComboBoxItem>
+                </ComboBox>
+            </DockPanel>
+            <ComboBox x:Name="cbSubjectName" 
+              ItemsSource="{Binding Subjects}" 
+              DisplayMemberPath="name" 
+              SelectedItem="{Binding SelectedLesson.Subject.SubjectName.name}"/>
+            <ComboBox x:Name="cbTeacherFIO" 
+              ItemsSource="{Binding Cabinets}" 
+              DisplayMemberPath="number" 
+              SelectedValue="{Binding SelectedLesson.Cabinet.number}"/>
+            <Button Command="{Binding CreateNewSubjectCommand}">
+                Добавить
+            </Button>
+
+            <TextBlock Text="Редактирование урока" FontWeight="Bold"/>
+            <ComboBox ItemsSource="{Binding SubjectNames}" 
+              DisplayMemberPath="name" 
+              SelectedItem="{Binding SelectedSubject.SubjectName, Mode=TwoWay}"/>
+            <ComboBox ItemsSource="{Binding Teachers}" 
+              DisplayMemberPath="FIO" 
+              SelectedItem="{Binding SelectedSubject.Teacher, Mode=TwoWay}"/>
+            <ComboBox ItemsSource="{Binding Groups}" 
+              DisplayMemberPath="name" 
+              SelectedItem="{Binding SelectedSubject.Group, Mode=TwoWay}"/>
+            <TextBlock Text="Количество часов"/>
+            <TextBox Text="{Binding SelectedSubject.time, Mode=TwoWay}"/>
+            <Button Command="{Binding SaveSelectedSubjectCommand}">
+                Сохранить
+            </Button>
+            <Button Command="{Binding BackCommand}">Назад</Button>
+        </StackPanel>
     </Grid>
 </Page>
