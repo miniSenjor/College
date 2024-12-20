@@ -43,38 +43,63 @@ namespace TimeTable.ViewModel
         /// </summary>
         private void LoadData()
         {
-            var groups = App.GetContext().Group.ToList(); // Получаем все группы в память
+            // Выполняем JOIN запрос, чтобы получить все необходимые данные в одном запросе
+            var query = from g in App.GetContext().Group
+                        join s in App.GetContext().Subject on g.id_group equals s.id_group
+                        join l in App.GetContext().Lesson on s.id_subject equals l.id_subject
+                        join t in App.GetContext().Teacher on s.id_teacher equals t.id_teacher
+                        join c in App.GetContext().Сabinet on l.id_cabinet equals c.id_cabinet
+                        select new
+                        {
+                            GroupId = g.id_group,
+                            GroupName = g.name,
+                            SubjectName = s.SubjectName.name,
+                            TeacherName = t.FIO,
+                            CabinetNumber = c.number,
+                            LessonNumber = l.number,
+                            DayOfWeek = l.day
+                        };
 
-            Weeks = new ObservableCollection<WeekModel>(
-            groups.Select(g => new WeekModel
-            {
-                GroupName = g.name,
-                Days = new List<DayModel>
+            // Группируем данные по группе и дню недели
+            var groupedData = query.ToList()
+                .GroupBy(x => new { x.GroupId, x.GroupName })
+                .Select(g => new WeekModel
                 {
-                    new DayModel { DayName = "Понедельник", Lessons = GetLessonsForDay(g.id_group, 1, groups) },
-                    new DayModel { DayName = "Вторник", Lessons = GetLessonsForDay(g.id_group, 2, groups) },
-                    new DayModel { DayName = "Среда", Lessons = GetLessonsForDay(g.id_group, 3, groups) },
-                    new DayModel { DayName = "Четверг", Lessons = GetLessonsForDay(g.id_group, 4, groups) },
-                    new DayModel { DayName = "Пятница", Lessons = GetLessonsForDay(g.id_group, 5, groups) },
-                    new DayModel { DayName = "Суббота", Lessons = GetLessonsForDay(g.id_group, 6, groups) }
-                }
-            }).ToList());
+                    GroupName = g.Key.GroupName,
+                    Days = Enumerable.Range(1, 6).Select(dayOfWeek => new DayModel
+                    {
+                        DayName = GetDayName(dayOfWeek),
+                        Lessons = g.Where(x => x.DayOfWeek == dayOfWeek)
+                            .Select(x => new LessonModel
+                            {
+                                Subject = x.SubjectName,
+                                Teacher = x.TeacherName,
+                                Cabinet = x.CabinetNumber,
+                                Number = x.LessonNumber
+                            }).ToList()
+                    }).ToList()
+                }).ToList();
+
+            // Обновляем коллекцию Weeks
+            Weeks = new ObservableCollection<WeekModel>(groupedData);
         }
 
-        private List<LessonModel> GetLessonsForDay(int groupId, int dayOfWeek, List<Group> allGroups)
+        private string GetDayName(int dayOfWeek)
         {
-            return App.GetContext().Subject
-                .Where(s => s.id_group == groupId)
-                .SelectMany(s => s.Lesson
-                    .Where(l => l.day == dayOfWeek)
-                    .Select(l => new LessonModel
-                    {
-                        Subject = s.SubjectName.name,
-                        Teacher = s.Teacher.FIO,
-                        Cabinet = l.Сabinet.number,
-                        Number = l.number
-                    }))
-                .ToList();
+            if (dayOfWeek == 1)
+                return "Понедельник";
+            else if (dayOfWeek == 2)
+                return "Вторник";
+            else if (dayOfWeek == 3)
+                return "Среда";
+            else if (dayOfWeek == 4)
+                return "Четверг";
+            else if (dayOfWeek == 5)
+                return "Пятница";
+            else if (dayOfWeek == 6)
+                return "Суббота";
+            else
+                throw new ArgumentOutOfRangeException(nameof(dayOfWeek), "Неверный номер дня недели");
         }
 
 
