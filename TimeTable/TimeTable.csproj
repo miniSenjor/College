@@ -113,6 +113,7 @@
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AddSubjectViewModel.cs" />
+    <Compile Include="ViewModel\AddViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Navigation.cs" />
@@ -121,8 +122,14 @@
     <Compile Include="View\AddLessonView.xaml.cs">
       <DependentUpon>AddLessonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AddSomethingView.xaml.cs">
+      <DependentUpon>AddSomethingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddSubjectView.xaml.cs">
       <DependentUpon>AddSubjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddView.xaml.cs">
+      <DependentUpon>AddView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -143,7 +150,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AddSomethingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddSubjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

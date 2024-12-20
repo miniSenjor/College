@@ -59,7 +59,7 @@ namespace TimeTable.ViewModel
             {
                 User currentUser = await _context.User.FirstAsync(u => u.login == _login && u.password == _password);
                 if (currentUser != null)
-                    Navigation.Navigate(new TimeTableView());
+                    Navigation.Navigate(new AddView());
             }
             catch 
             {
