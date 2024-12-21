@@ -25,37 +25,32 @@
                       SelectedItem="{Binding Group, Mode=TwoWay}"
                       DisplayMemberPath="name"/>
         </StackPanel>
-        <ListView ItemsSource="{Binding Weeks}" 
-                    ScrollViewer.CanContentScroll="True"
-                  SelectedItem="{Binding SelectedLesson, Mode=TwoWay}"
-              Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=4}">
+        <ListView ItemsSource="{Binding Weeks}" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="10">
+                    <Expander Header="{Binding GroupName}">
                         <ItemsControl ItemsSource="{Binding Days}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Margin="5">
-                                        <!-- Вертикальный текст для дня недели -->
-                                        <TextBlock Width="100" Text="{Binding DayName}">
-                                        </TextBlock>
-                                        <ItemsControl ItemsSource="{Binding Lessons}">
-                                            <ItemsControl.ItemTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding DayName}" FontWeight="Bold"/>
+                                        <ListView ItemsSource="{Binding Lessons}">
+                                            <ListView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <StackPanel Margin="10">
-                                                        <TextBlock Text="{Binding Number}"/>
-                                                        <TextBlock Text="{Binding Subject.name}"/>
-                                                        <TextBlock Text="{Binding Teacher}"/>
-                                                        <TextBlock Text="{Binding Cabinet}"/>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <ComboBox ItemsSource="{Binding ListSubjects}" SelectedItem="{Binding Subject}" DisplayMemberPath="SubjectNameAndTeacher" Width="100"/>
+                                                        <ComboBox ItemsSource="{Binding ListCabinets}" SelectedItem="{Binding Cabinet}" DisplayMemberPath="number" Width="100"/>
+        
+                                                        <TextBox Text="{Binding Number}" Width="30"/>
                                                     </StackPanel>
                                                 </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
                                     </StackPanel>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                    </StackPanel>
+                    </Expander>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

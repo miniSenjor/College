@@ -73,7 +73,9 @@
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DayModel.cs" />
+    <Compile Include="Model\Lesson.cs" />
     <Compile Include="Model\LessonModel.cs" />
+    <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\WeekModel.cs" />
     <Compile Include="Replacement.cs">

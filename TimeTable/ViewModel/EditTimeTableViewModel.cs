@@ -17,6 +17,9 @@ namespace TimeTable.ViewModel
         {
             _context = App.GetContext();
             Groups = new ObservableCollection<Group>(_context.Group);
+            Cabinets = new ObservableCollection<Сabinet>(_context.Сabinet);
+
+
             if (weekModels != null ) 
             {
                 Weeks = weekModels;   
@@ -25,8 +28,7 @@ namespace TimeTable.ViewModel
             {
                 Weeks = new ObservableCollection<WeekModel>();
             }
-            Cabinets = new ObservableCollection<Сabinet>(_context.Сabinet);
-            Subjects = new ObservableCollection<Subject>(_context.Subject);
+            
         }
         private TimeTableEntities _context;
         private Group _group;
