@@ -86,7 +86,14 @@
                     </Button.Resources>
                     Просмотр расписания
                 </Button>
-
+                <Button Command="{Binding EditTimeTableCommand}" Margin="5" Height="30" FontSize="12" Width="175" BorderThickness="3" BorderBrush="#339933" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </Button.Resources>
+                    Изменение расписания
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

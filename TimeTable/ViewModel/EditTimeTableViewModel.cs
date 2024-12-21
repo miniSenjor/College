@@ -79,7 +79,8 @@ namespace TimeTable.ViewModel
             {
                 field = newValue;
                 OnPropertyChanged(nameof(field));
-                //if (field)
+                if (field is Group)
+                    GroupSelectedCanged(Group);
                 return true;
             }
             return false;
