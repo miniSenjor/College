@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using TimeTable.View;
 
 namespace TimeTable.ViewModel
 {
@@ -116,7 +117,7 @@ namespace TimeTable.ViewModel
             {
                 _context.Subject.Add(NewSubject);
                 _context.SaveChanges();
-                ListSubjects.Add(NewSubject);
+                Navigation.Navigate(new AddSubjectView());
                 MessageBox.Show("Предмет упешно создан");
             }
             catch (Exception ex)
@@ -134,7 +135,7 @@ namespace TimeTable.ViewModel
             }
             try
             {
-                _context.Subject.AddOrUpdate(NewSubject);
+                _context.Subject.AddOrUpdate(SelectedSubject);
                 _context.SaveChanges();
                 MessageBox.Show("Сохранено");
             }

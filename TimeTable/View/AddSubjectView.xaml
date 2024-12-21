@@ -8,69 +8,110 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddSubjectView">
 
-    <Grid>
+    <Grid Background="#6D1008">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="101*"/>
+            <RowDefinition Height="349*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="364"/>
+            <ColumnDefinition Width="226"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
+
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Column="0">
-            <ComboBox ItemsSource="{Binding Groups}" 
+        <Border Grid.ColumnSpan="3" Background="#339933" HorizontalAlignment="Left" VerticalAlignment="Center" Width="800" Height="100">
+            <Grid>
+                <TextBlock Text="Редактирование и добавление групп" Foreground="White" FontSize="30" Margin="110 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Image Source="/logo.png" HorizontalAlignment="Left" Margin="25 10 10 10"/>
+            </Grid>
+        </Border>
+        <DockPanel Grid.Column="0" Grid.Row="1" >
+            <ComboBox ItemsSource="{Binding Groups}" Margin="100 5 0 0"  Width="120" HorizontalAlignment="Left"
                       DisplayMemberPath="name" 
                       DockPanel.Dock="Top"
                       SelectedItem="{Binding Group}"/>
-        <ListView ItemsSource="{Binding ListSubjects}"
+            <ListView ItemsSource="{Binding ListSubjects}" Margin="100,10,10,25"
                   SelectedItem="{Binding SelectedSubject, Mode=TwoWay}"
                   DockPanel.Dock="Bottom"
                   SelectionChanged="ListView_SelectionChanged"
                   d:ItemsSource="{d:SampleData ItemCount=5}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="10">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10">
                             <TextBlock FontSize="16" Text="{Binding SubjectName.name, Mode=TwoWay}"/>
                             <TextBlock Text="{Binding Group.name, Mode=TwoWay}"/>
                             <TextBlock Text="{Binding Teacher.FIO, Mode=TwoWay}"/>
                             <TextBlock Text="{Binding time, Mode=TwoWay}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </DockPanel>
-        <StackPanel Grid.Column="1" Background="White">
-            <TextBlock Text="Предмет" FontWeight="Bold"/>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+
+            <TextBlock Text="Предмет" FontWeight="Bold" Foreground="White" FontSize="16" Margin="5" Width="70" HorizontalAlignment="Left"/>
             <ComboBox x:Name="cbSubjectName" 
-                      ItemsSource="{Binding SubjectNames}" 
-                      DisplayMemberPath="name" 
-                      SelectedItem="{Binding NewSubject.SubjectName}"/>
+ItemsSource="{Binding SubjectNames}" 
+DisplayMemberPath="name" 
+SelectedItem="{Binding NewSubject.SubjectName}" Width="130" Margin="5" HorizontalAlignment="Left"/>
             <ComboBox x:Name="cbTeacherFIO" 
                       ItemsSource="{Binding Teachers}" 
                       DisplayMemberPath="FIO" 
-                      SelectedValue="{Binding NewSubject.Teacher}"/>
+                      SelectedValue="{Binding NewSubject.Teacher}" Width="130" Margin="5" HorizontalAlignment="Left"/>
             <ComboBox x:Name="cbGroupName" 
                       ItemsSource="{Binding Groups}" 
                       DisplayMemberPath="name" 
-                      SelectedValue="{Binding NewSubject.Group}"/>
-            <TextBlock Text="Количество часов"/>
-            <TextBox Text="{Binding NewSubject.time}"/>
-            <Button Command="{Binding CreateNewSubjectCommand}">
-                Добавить
-            </Button>
-            
-            <TextBlock Text="Редактирование предмета" FontWeight="Bold"/>
+                      SelectedValue="{Binding NewSubject.Group}" Width="130" Margin="5" HorizontalAlignment="Left"/>
+            <TextBlock Text="Редактирование предмета" FontWeight="Bold" Foreground="White" FontSize="16" Margin="5"/>
             <ComboBox ItemsSource="{Binding SubjectNames}" 
                       DisplayMemberPath="name" 
-                      SelectedItem="{Binding SelectedSubject.SubjectName, Mode=TwoWay}"/>
+                      SelectedItem="{Binding SelectedSubject.SubjectName, Mode=TwoWay}" Width="130" Margin="5" HorizontalAlignment="Left"/>
             <ComboBox ItemsSource="{Binding Teachers}" 
                       DisplayMemberPath="FIO" 
-                      SelectedItem="{Binding SelectedSubject.Teacher, Mode=TwoWay}"/>
+                      SelectedItem="{Binding SelectedSubject.Teacher, Mode=TwoWay}" Width="130" Margin="5" HorizontalAlignment="Left"/>
             <ComboBox ItemsSource="{Binding Groups}" 
                       DisplayMemberPath="name" 
-                      SelectedItem="{Binding SelectedSubject.Group, Mode=TwoWay}"/>
-            <TextBlock Text="Количество часов"/>
-            <TextBox Text="{Binding SelectedSubject.time, Mode=TwoWay}"/>
-            <Button Command="{Binding SaveSelectedSubjectCommand}">
-                Сохранить
-            </Button>
-            <Button Command="{Binding BackCommand}">Назад</Button>
+                      SelectedItem="{Binding SelectedSubject.Group, Mode=TwoWay}" Width="130" Margin="5" HorizontalAlignment="Left"/>
         </StackPanel>
+
+        <StackPanel Grid.Column="2" Grid.Row="1">
+
+            <StackPanel >
+                <TextBlock Text="Количество часов" FontWeight="Bold" Foreground="White" FontSize="16" Margin="5"/>
+                <TextBox Text="{Binding NewSubject.time}" Margin="5 0 0 5" Width="100" HorizontalAlignment="Left"/>
+
+                <Button Margin="5 0 0 5" Command="{Binding CreateNewSubjectCommand}" Height="20" FontSize="9" Width="100" HorizontalAlignment="Left" BorderThickness="3" BorderBrush="#339933" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </Button.Resources>
+                    Добавить
+                </Button>
+            </StackPanel>
+
+            <TextBlock Text="Количество часов" FontWeight="Bold" Foreground="White" FontSize="16" Margin="5"/>
+            <TextBox Text="{Binding SelectedSubject.time, Mode=TwoWay}" Margin="5 0 0 5" Width="100" HorizontalAlignment="Left"/>
+
+        </StackPanel>
+
+
+        <Button Margin="5 0 0 60" Command="{Binding SaveSelectedSubjectCommand}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Width="150" Height="30" BorderThickness="3" BorderBrush="#339933" VerticalAlignment="Bottom" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"></Setter>
+                </Style>
+            </Button.Resources>
+            Сохранить
+        </Button>
+
+        <Button Margin="5 0 0 20" Command="{Binding BackCommand}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Width="150" Height="30" BorderThickness="3" BorderBrush="#339933" VerticalAlignment="Bottom" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"></Setter>
+                </Style>
+            </Button.Resources>
+            Назад
+        </Button>
     </Grid>
 </Page>
