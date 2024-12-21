@@ -72,9 +72,9 @@ namespace TimeTable.ViewModel
                         Lessons = g.Where(x => x.DayOfWeek == dayOfWeek)
                             .Select(x => new LessonModel
                             {
-                                Subject = x.SubjectName,
+                                SubjectName = x.SubjectName,
                                 Teacher = x.TeacherName,
-                                Cabinet = x.CabinetNumber,
+                                CabinetName = x.CabinetNumber,
                                 Number = x.LessonNumber
                             }).OrderBy(lesson => lesson.Number) // Сортируем по номеру урока
                             .ToList()

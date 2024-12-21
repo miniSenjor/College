@@ -139,12 +139,13 @@ namespace TimeTable.ViewModel
                         {
                             GroupId = g.id_group,
                             GroupName = g.name,
-                            SubjectName = s.SubjectName.name,
+                            Subject = s,
                             TeacherName = t.FIO,
-                            CabinetNumber = c.number,
+                            Cabinet = c,
                             LessonNumber = l.number,
                             DayOfWeek = l.day
                         };
+        
 
             // Группируем данные по группе и дню недели
             var groupedData = query.ToList()
@@ -158,9 +159,9 @@ namespace TimeTable.ViewModel
                         Lessons = g.Where(x => x.DayOfWeek == dayOfWeek)
                             .Select(x => new LessonModel
                             {
-                                Subject = x.SubjectName,
+                                Subject = x.Subject,
                                 Teacher = x.TeacherName,
-                                Cabinet = x.CabinetNumber,
+                                Cabinet = x.Cabinet,
                                 Number = x.LessonNumber
                             }).OrderBy(lesson => lesson.Number) // Сортируем по номеру урока
                             .ToList()
