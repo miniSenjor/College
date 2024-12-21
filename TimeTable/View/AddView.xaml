@@ -8,43 +8,85 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddView">
 
-    <Grid Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-            
-        <Grid Grid.Column="0">
+    <Grid Background="#6D1008" Opacity="90">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="101"/>
+            <RowDefinition Height="215*"/>
+            <RowDefinition Height="39*"/>
+
+        </Grid.RowDefinitions>
+        <Border Grid.ColumnSpan="2" Background="#339933" HorizontalAlignment="Left" VerticalAlignment="Center" Width="800" Height="100">
+            <Grid>
+                <TextBlock Text="Рыбинский Авиационный Колледж" Foreground="White" FontSize="30" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image Source="/logo.png" HorizontalAlignment="Left" Margin="25 10 10 10"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="2" Grid.RowSpan="2">
             <DockPanel>
-                <Button DockPanel.Dock="Left" Height="40" Width="50">
+                <Button Margin="5" Height="30" FontSize="12" Width="175" BorderThickness="3" BorderBrush="#339933" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </Button.Resources>
                     Выйти
                 </Button>
             </DockPanel>
         </Grid>
-        <Grid Grid.Column="1">
-            <StackPanel Width="250">
-                <Button Command="{Binding AddCabinetCommand}">
+        <Grid Grid.Row="1">
+            <StackPanel Width="250" VerticalAlignment="Center">
+                <Button Command="{Binding AddCabinetCommand}"  Height="30" FontSize="12" Width="175" BorderThickness="3" BorderBrush="#339933" Margin="5">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </Button.Resources>
                     Добавить кабинет
                 </Button>
-                <Button Command="{Binding AddTeacherCommand}">
+
+                <Button Command="{Binding AddTeacherCommand}" Margin="5" Height="30" FontSize="12" Width="175" BorderThickness="3" BorderBrush="#339933" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </Button.Resources>
                     Добавить препода
                 </Button>
-                <Button Command="{Binding AddGroupCommand}">
+                <Button Command="{Binding AddGroupCommand}" Margin="5" Height="30" FontSize="12" Width="175" BorderThickness="3" BorderBrush="#339933" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </Button.Resources>
                     Добавить группу
                 </Button>
-                <Button Command="{Binding AddSubjectNameCommand}">
+                <Button Command="{Binding AddSubjectNameCommand}" Margin="5" Height="30" FontSize="12" Width="175" BorderThickness="3" BorderBrush="#339933" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </Button.Resources>
                     Добавить название предмета
                 </Button>
-                <Button Command="{Binding AddSubjectCommand}">
+
+                <Button Command="{Binding AddSubjectCommand}" Margin="5" Height="30" FontSize="12" Width="175" BorderThickness="3" BorderBrush="#339933" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </Button.Resources>
                     Добавить предмет
                 </Button>
-                <Button Command="{Binding ViewTimeTableCommand}">
+                <Button Command="{Binding ViewTimeTableCommand}" Margin="5" Height="30" FontSize="12" Width="175" BorderThickness="3" BorderBrush="#339933" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"></Setter>
+                        </Style>
+                    </Button.Resources>
                     Просмотр расписания
                 </Button>
 
-                <Button Command="{Binding EditTimeTableCommand}">
-                    Изменить расписание
-                </Button>
             </StackPanel>
         </Grid>
     </Grid>
