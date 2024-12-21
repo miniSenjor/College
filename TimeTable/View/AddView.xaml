@@ -86,7 +86,7 @@
                     </Button.Resources>
                     Просмотр расписания
                 </Button>
-
+                
             </StackPanel>
         </Grid>
     </Grid>
