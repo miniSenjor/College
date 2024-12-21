@@ -26,27 +26,34 @@ namespace TimeTable.ViewModel
                 Weeks = new ObservableCollection<WeekModel>();
             }
             Cabinets = new ObservableCollection<Сabinet>(_context.Сabinet);
+            Subjects = new ObservableCollection<Subject>(_context.Subject);
         }
         private TimeTableEntities _context;
         private Group _group;
         public Group Group
         {
             get => _group;
-            set 
-            { 
+            set => SetField(ref _group, value);
+            /*{ 
                 if (SetField(ref _group, value))
                 {
                     GroupSelectedCanged(_group);
                 }
 
-
-            }
+                //MessageBox.Show(_group.name);
+            }*/
         }
         private ObservableCollection<Group> _groups;
         public ObservableCollection<Group> Groups
         {
             get => _groups;
             set => SetField(ref _groups, value);
+        }
+        private ObservableCollection<Subject> _subjects;
+        public ObservableCollection<Subject> Subjects
+        {
+            get => _subjects;
+            set => SetField(ref _subjects, value);
         }
         private ObservableCollection<WeekModel> _weeks;
         public ObservableCollection<WeekModel> Weeks
@@ -72,6 +79,7 @@ namespace TimeTable.ViewModel
             {
                 field = newValue;
                 OnPropertyChanged(nameof(field));
+                //if (field)
                 return true;
             }
             return false;
@@ -94,6 +102,22 @@ namespace TimeTable.ViewModel
         }
 
         private void Back(object obj)
+        {
+            Navigation.GoBack();
+        }
+
+        private RelayCommand _saveSelectedSubjectCommand;
+        public RelayCommand SaveSelectedSubjectCommand
+        {
+            get
+            {
+                if (_saveSelectedSubjectCommand == null)
+                    _saveSelectedSubjectCommand = new RelayCommand(SaveSelectedSubject);
+                return _saveSelectedSubjectCommand;
+            }
+        }
+
+        private void SaveSelectedSubject(object obj)
         {
             Navigation.GoBack();
         }

@@ -109,26 +109,16 @@
               ItemsSource="{Binding Subjects}" 
               DisplayMemberPath="name" 
               SelectedItem="{Binding SelectedLesson.Subject.SubjectName.name}"/>
-            <ComboBox x:Name="cbTeacherFIO" 
-              ItemsSource="{Binding Cabinets}" 
-              DisplayMemberPath="number" 
-              SelectedValue="{Binding SelectedLesson.Cabinet.number}"/>
+            
             <Button Command="{Binding CreateNewSubjectCommand}">
                 Добавить
             </Button>
 
             <TextBlock Text="Редактирование урока" FontWeight="Bold"/>
-            <ComboBox ItemsSource="{Binding SubjectNames}" 
+            <ComboBox ItemsSource="{Binding Subjects}" 
               DisplayMemberPath="name" 
               SelectedItem="{Binding SelectedSubject.SubjectName, Mode=TwoWay}"/>
-            <ComboBox ItemsSource="{Binding Teachers}" 
-              DisplayMemberPath="FIO" 
-              SelectedItem="{Binding SelectedSubject.Teacher, Mode=TwoWay}"/>
-            <ComboBox ItemsSource="{Binding Groups}" 
-              DisplayMemberPath="name" 
-              SelectedItem="{Binding SelectedSubject.Group, Mode=TwoWay}"/>
-            <TextBlock Text="Количество часов"/>
-            <TextBox Text="{Binding SelectedSubject.time, Mode=TwoWay}"/>
+            
             <Button Command="{Binding SaveSelectedSubjectCommand}">
                 Сохранить
             </Button>
