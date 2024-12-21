@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,6 @@ namespace TimeTable.ViewModel
             _context = App.GetContext();
             Cabinet = new Сabinet();
             Cabinets = new ObservableCollection<Сabinet>(_context.Сabinet);
-            _context.Сabinet.Add(Cabinet);
         }
         private TimeTableEntities _context;
         private Сabinet _cabinet;
@@ -78,6 +78,7 @@ namespace TimeTable.ViewModel
         {
             try
             {
+            _context.Сabinet.AddOrUpdate(Cabinet);
                 _context.SaveChanges();
                 MessageBox.Show("Кабинет успешно добавлен!");
             }

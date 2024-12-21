@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,6 @@ namespace TimeTable.ViewModel
         {
             _context = App.GetContext();
             Group = new Group();
-            _context.Group.Add(Group);
             Groups = new ObservableCollection<Group>(_context.Group);
         }
         private TimeTableEntities _context;
@@ -77,6 +77,7 @@ namespace TimeTable.ViewModel
         {
             try
             {
+            _context.Group.AddOrUpdate(Group);
                 _context.SaveChanges();
                 MessageBox.Show("Группа успешно добавлен!");
             }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,6 @@ namespace TimeTable.ViewModel
             _context = App.GetContext();
             Teacher = new Teacher();
             Teachers = new ObservableCollection<Teacher>( _context.Teacher);
-            _context.Teacher.Add(Teacher);
         }
         private TimeTableEntities _context;
         private Teacher _teacher;
@@ -61,6 +61,7 @@ namespace TimeTable.ViewModel
         {
             try
             {
+            _context.Teacher.AddOrUpdate(Teacher);
                 _context.SaveChanges();
                 MessageBox.Show("Препод успешно добавлен!");
             }
