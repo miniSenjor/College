@@ -62,6 +62,32 @@ namespace TimeTable.ViewModel
             Navigation.Navigate(new AddSubjectNameView());
         }
 
+        private RelayCommand _deleteSubjectNameCommand;
+        public RelayCommand DeleteSubjectNameCommand
+        {
+            get
+            {
+                if (_deleteSubjectNameCommand == null)
+                    _deleteSubjectNameCommand = new RelayCommand(DeleteSubjectName);
+                return _deleteSubjectNameCommand;
+            }
+        }
+
+        private void DeleteSubjectName(object obj)
+        {
+            try
+            {
+                _context.SubjectName.Remove(SubjectName);
+                _context.SaveChanges();
+                MessageBox.Show("Предмет успешно удален!");
+                Navigation.Navigate(new AddSubjectNameView());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private RelayCommand _saveCommand;
         public RelayCommand SaveCommand
         {

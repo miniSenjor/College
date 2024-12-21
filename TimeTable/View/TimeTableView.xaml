@@ -49,9 +49,9 @@
                                                 <DataTemplate>
                                                     <StackPanel Margin="10">
                                                         <TextBlock Text="{Binding Number}"/>
-                                                        <TextBlock Text="{Binding Subject}"/>
+                                                        <TextBlock Text="{Binding SubjectName}"/>
                                                         <TextBlock Text="{Binding Teacher}"/>
-                                                        <TextBlock Text="{Binding Cabinet}"/>
+                                                        <TextBlock Text="{Binding CabinetName}"/>
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>

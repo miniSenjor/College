@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TimeTable.Model;
 using TimeTable.ViewModel;
 
 namespace TimeTable.View
@@ -25,6 +26,10 @@ namespace TimeTable.View
         {
             InitializeComponent();
             DataContext = new AddViewModel();
+            if (CurrentUser.User.id_role==1)
+            {
+                btnEditTT.Visibility = Visibility.Visible;
+            }
         }
     }
 }

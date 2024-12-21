@@ -24,7 +24,12 @@
 
         <Grid Grid.Row="2" Grid.RowSpan="2">
             <DockPanel>
-                <Button Margin="5" Height="30" FontSize="12" Width="175" BorderThickness="3" BorderBrush="#339933" >
+                <Button Command="{Binding BackCommand}"
+                    Margin="5" 
+                        Height="30" 
+                        FontSize="12" 
+                        Width="175" 
+                        BorderThickness="3" BorderBrush="#339933" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"></Setter>
@@ -86,7 +91,13 @@
                     </Button.Resources>
                     Просмотр расписания
                 </Button>
-                <Button Command="{Binding EditTimeTableCommand}" Margin="5" Height="30" FontSize="12" Width="175" BorderThickness="3" BorderBrush="#339933" >
+                <Button Command="{Binding EditTimeTableCommand}" 
+                        Margin="5" Height="30" 
+                        FontSize="12" 
+                        Width="175" 
+                        BorderThickness="3" BorderBrush="#339933" 
+                        Visibility="Hidden"
+                        x:Name="btnEditTT">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"></Setter>

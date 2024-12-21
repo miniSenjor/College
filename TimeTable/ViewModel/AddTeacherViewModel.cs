@@ -88,6 +88,32 @@ namespace TimeTable.ViewModel
             Navigation.Navigate(new AddTeacherView());
         }
 
+        private RelayCommand _deleteTeacherCommand;
+        public RelayCommand DeleteTeacherCommand
+        {
+            get
+            {
+                if (_deleteTeacherCommand == null)
+                    _deleteTeacherCommand = new RelayCommand(DeleteTeacher);
+                return _deleteTeacherCommand;
+            }
+        }
+
+        private void DeleteTeacher(object obj)
+        {
+            try
+            {
+                _context.Teacher.Remove(Teacher);
+                _context.SaveChanges();
+                MessageBox.Show("Преподаватель успешно удален!");
+                Navigation.Navigate(new AddTeacherView());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private RelayCommand _backCommand;
         public RelayCommand BackCommand
         {

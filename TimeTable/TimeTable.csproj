@@ -72,6 +72,7 @@
     <Compile Include="Lesson.cs">
       <DependentUpon>TimeTable.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CurrentUser.cs" />
     <Compile Include="Model\DayModel.cs" />
     <Compile Include="Model\Lesson.cs" />
     <Compile Include="Model\LessonModel.cs" />

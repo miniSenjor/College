@@ -5,13 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TimeTable.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="600"
       Title="EditTimeTableView">
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="90"/>
-            <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel>
@@ -24,8 +23,13 @@
             <ComboBox ItemsSource="{Binding Groups}"
                       SelectedItem="{Binding Group, Mode=TwoWay}"
                       DisplayMemberPath="name"/>
+            <Button Command="{Binding SaveSelectedSubjectCommand}" Height="30" Width="100">
+                Сохранить
+            </Button>
         </StackPanel>
-        <ListView ItemsSource="{Binding Weeks}" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView ItemsSource="{Binding Weeks}" Grid.Column="1" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Expander Header="{Binding GroupName}">
@@ -34,14 +38,15 @@
                                 <DataTemplate>
                                     <StackPanel>
                                         <TextBlock Text="{Binding DayName}" FontWeight="Bold"/>
-                                        <ListView ItemsSource="{Binding Lessons}">
+                                        <ListView ItemsSource="{Binding Lessons}"
+                                                  ScrollViewer.HorizontalScrollBarVisibility="Auto">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
-                                                        <ComboBox ItemsSource="{Binding ListSubjects}" SelectedItem="{Binding Subject}" DisplayMemberPath="SubjectNameAndTeacher" Width="100"/>
-                                                        <ComboBox ItemsSource="{Binding ListCabinets}" SelectedItem="{Binding Cabinet}" DisplayMemberPath="number" Width="100"/>
-        
                                                         <TextBox Text="{Binding Number}" Width="30"/>
+                                                        <ComboBox ItemsSource="{Binding ListSubjects}" SelectedItem="{Binding Subject}" DisplayMemberPath="SubjectNameAndTeacher" Width="200"/>
+                                                        <ComboBox ItemsSource="{Binding ListCabinets}" SelectedItem="{Binding Cabinet}" DisplayMemberPath="number" Width="100"/>
+
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
@@ -54,70 +59,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Column="2" Background="White">
-            <TextBlock Text="Урок" FontWeight="Bold"/>
-            <DockPanel>
-                <TextBlock DockPanel.Dock="Left">
-                    День недели
-                </TextBlock>
-                <ComboBox SelectedItem="{Binding SelectedLesson.day}">
-                    <ComboBoxItem>
-                        1
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        2
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        3
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        4
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        5
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        6
-                    </ComboBoxItem>
-                </ComboBox>
-            </DockPanel>
-            <DockPanel>
-                <TextBlock DockPanel.Dock="Left">
-                   №
-                </TextBlock>
-                <ComboBox SelectedItem="{Binding SelectedLesson.number}">
-                    <ComboBoxItem>
-                        1
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        2
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        3
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        4
-                    </ComboBoxItem>
-                </ComboBox>
-            </DockPanel>
-            <ComboBox x:Name="cbSubjectName" 
-              ItemsSource="{Binding Subjects}" 
-              DisplayMemberPath="name" 
-              SelectedItem="{Binding SelectedLesson.Subject.SubjectName.name}"/>
-            
-            <Button Command="{Binding CreateNewSubjectCommand}">
-                Добавить
-            </Button>
-
-            <TextBlock Text="Редактирование урока" FontWeight="Bold"/>
-            <ComboBox ItemsSource="{Binding Subjects}" 
-              DisplayMemberPath="name" 
-              SelectedItem="{Binding SelectedSubject.SubjectName, Mode=TwoWay}"/>
-            
-            <Button Command="{Binding SaveSelectedSubjectCommand}">
-                Сохранить
-            </Button>
-            <Button Command="{Binding BackCommand}">Назад</Button>
-        </StackPanel>
     </Grid>
 </Page>

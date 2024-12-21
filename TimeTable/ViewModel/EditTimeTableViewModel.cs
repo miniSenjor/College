@@ -122,7 +122,14 @@ namespace TimeTable.ViewModel
 
         private void SaveSelectedSubject(object obj)
         {
-            Navigation.GoBack();
+            try
+            {
+                MessageBox.Show("Рассписание успешно сохранено");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void GroupSelectedCanged(Group group)

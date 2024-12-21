@@ -62,6 +62,32 @@ namespace TimeTable.ViewModel
             Navigation.Navigate(new AddGroupView());
         }
 
+        private RelayCommand _deleteGroupCommand;
+        public RelayCommand DeleteGroupCommand
+        {
+            get
+            {
+                if (_deleteGroupCommand == null)
+                    _deleteGroupCommand = new RelayCommand(DeleteGroup);
+                return _deleteGroupCommand;
+            }
+        }
+
+        private void DeleteGroup(object obj)
+        {
+            try
+            {
+                _context.Group.Remove(Group);
+                _context.SaveChanges();
+                MessageBox.Show("Группа успешно удален!");
+                Navigation.Navigate(new AddGroupView());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private RelayCommand _saveCommand;
         public RelayCommand SaveCommand
         {
