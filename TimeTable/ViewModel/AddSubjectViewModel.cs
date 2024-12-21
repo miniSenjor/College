@@ -158,7 +158,7 @@ namespace TimeTable.ViewModel
 
         private void Back(object obj)
         {
-            Navigation.GoBack();
+            Navigation.Navigate(new AddView());
         }
 
 
