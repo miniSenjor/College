@@ -22,7 +22,7 @@
                 Назад
             </Button>
             <ComboBox ItemsSource="{Binding Groups}"
-                      SelectedItem="{Binding Group}"
+                      SelectedItem="{Binding Group, Mode=TwoWay}"
                       DisplayMemberPath="name"/>
         </StackPanel>
         <ListView ItemsSource="{Binding Weeks}" 

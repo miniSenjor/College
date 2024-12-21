@@ -77,9 +77,11 @@ namespace TimeTable.ViewModel
         {
             try
             {
-            _context.Group.AddOrUpdate(Group);
+                _context.Group.AddOrUpdate(Group);
                 _context.SaveChanges();
                 MessageBox.Show("Группа успешно добавлен!");
+                Groups = new ObservableCollection<Group>(_context.Group);
+                //Navigation.Navigate(new AddGroupView());
             }
             catch (Exception ex)
             {

@@ -61,9 +61,10 @@ namespace TimeTable.ViewModel
         {
             try
             {
-            _context.Teacher.AddOrUpdate(Teacher);
+                _context.Teacher.AddOrUpdate(Teacher);
                 _context.SaveChanges();
                 MessageBox.Show("Препод успешно добавлен!");
+                Teachers = new ObservableCollection<Teacher>(_context.Teacher);
             }
             catch (Exception ex)
             {

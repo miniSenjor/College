@@ -36,6 +36,14 @@
                 </Button.Resources>
                 Новый кабинет
             </Button>
+            <Button Margin="80 5" Command="{Binding DeleteCabinetCommand}" HorizontalAlignment="Left" Height="40" FontSize="20" Width="250" BorderThickness="3" BorderBrush="#339933" >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"></Setter>
+                    </Style>
+                </Button.Resources>
+                Удалить кабинет
+            </Button>
             <Button Margin="80 5" Command="{Binding SaveCommand}" HorizontalAlignment="Left" Height="40" FontSize="20" Width="250" BorderThickness="3" BorderBrush="#339933">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">

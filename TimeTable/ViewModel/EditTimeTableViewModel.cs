@@ -82,18 +82,6 @@ namespace TimeTable.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
-        /*private RelayCommand _groupSelectedCangedCommandCommand;
-        public RelayCommand GroupSelectedCangedCommand
-        {
-            get
-            {
-                if (_groupSelectedCangedCommandCommand == null)
-                    _groupSelectedCangedCommandCommand = new RelayCommand(GroupSelectedCangedCommandCommand);
-                return _groupSelectedCangedCommandCommand;
-            }
-        }*/
-
         private RelayCommand _backCommand;
         public RelayCommand BackCommand
         {

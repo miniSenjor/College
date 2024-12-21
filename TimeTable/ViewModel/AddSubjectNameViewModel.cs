@@ -77,9 +77,10 @@ namespace TimeTable.ViewModel
         {
             try
             {
-            _context.SubjectName.AddOrUpdate(SubjectName);
+                _context.SubjectName.AddOrUpdate(SubjectName);
                 _context.SaveChanges();
                 MessageBox.Show("Кабинет успешно добавлен!");
+                SubjectNames = new ObservableCollection<SubjectName>(_context.SubjectName);
             }
             catch (Exception ex)
             {

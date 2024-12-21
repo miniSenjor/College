@@ -78,11 +78,38 @@ namespace TimeTable.ViewModel
         {
             try
             {
-            _context.Сabinet.AddOrUpdate(Cabinet);
+                _context.Сabinet.AddOrUpdate(Cabinet);
                 _context.SaveChanges();
-                MessageBox.Show("Кабинет успешно добавлен!");
+                MessageBox.Show("Кабинет успешно добавлен!"); 
+                Cabinets = new ObservableCollection<Сabinet> ( _context.Сabinet );
+                //Navigation.Navigate(new AddCabinetView());
             }
             catch(Exception ex) 
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        private RelayCommand _deleteCabinetCommand;
+        public RelayCommand DeleteCabinetCommand
+        {
+            get
+            {
+                if (_deleteCabinetCommand == null)
+                    _deleteCabinetCommand = new RelayCommand(DeleteCabinet);
+                return _deleteCabinetCommand;
+            }
+        }
+
+        private void DeleteCabinet(object obj)
+        {
+            try
+            {
+                _context.Сabinet.Remove(Cabinet);
+                _context.SaveChanges();
+                MessageBox.Show("Кабинет успешно удален!");
+                Navigation.Navigate(new AddCabinetView());
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
